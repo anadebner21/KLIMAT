@@ -1,22 +1,23 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+                        
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>KLIMAT</title>
 </head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <link ref="stylesheet" href="css/login.css">
 <body>
-    
-</body>
-</html>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<link ref="stylesheet" href="css/login.css">
-<body>
-    <div id="login">
+<div id="login">
         <h3 class="text-center text-white pt-5">Login form</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -24,6 +25,13 @@
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="login.php" method="post">
                             <h3 class="text-center text-info">Autenticação</h3>
+                            <?php 
+                            if(isset($_SESSION['nao_autenticado'])): ?>
+                                <p><small><small> Usuário ou senha inválidos!! </small></small></p>
+                            <?php 
+                                endif;
+                                unset($_SESSION['nao_autenticado']);
+                            ?>
                             <div class="form-group">
                                 <label for="usuario" class="text-info">Usuário:</label><br>
                                 <input type="text" name="usuario" id="usuario" class="form-control">
@@ -46,8 +54,6 @@
         </div>
     </div>
 </body>
+</html>
 
-
-
-
-     
+    
