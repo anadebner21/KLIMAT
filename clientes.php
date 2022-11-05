@@ -21,6 +21,8 @@ include("conexao.php");
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
 </head>
 
@@ -77,14 +79,33 @@ include("conexao.php");
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
+                        <?php
+
+                        
+                                
+                                $query = "select * from clientes order by nome asc"; 
+                                
+
+                                $result = mysqli_query($conexao, $query);
+                                //$dado = mysqli_fetch_array($result);
+                                $row = mysqli_num_rows($result);
+                            
+                            if($row == ''){
+                            echo"<h3>Não existe dados a serem mostrados</h3>";
+                           
+                            }else{
+                            
+                            ?>   
+
+
                       <table class="table">
                         <thead class=" text-primary">
                           
-                          <th>
+                        <th>
                             Nome
                           </th>
                           <th>
-                          CPF/CNPJ
+                            CPF/CNPJ
                           </th>
                           <th>
                             Endereço
@@ -95,13 +116,56 @@ include("conexao.php");
                             <th>
                             Telefone
                           </th>
+                           </th>
+                            <th>
+                            Data
+                          </th>
+                           </th>
+                            <th>
+                            Ações
+                          </th>
                         </thead>
                         <tbody>
-                         
+                        <?php
+                         while($res_1 = mysqli_fetch_array($result)) {
+                            $nome = $res_1['nome'];
+                            $cpf_cnpj = $res_1['cpf_cnpj'];
+                            $endereco = $res_1['endereco'];
+                            $email = $res_1['email'];
+                            $telefone = $res_1['telefone'];
+                            $data = $res_1['data'];
+                            $id = $res_1["id"];
+
+                            $data2 = implode('/', array_reverse(explode('-', $data)));
+
+                            ?>
+
+                            <tr>
+                                <td><?php echo $nome; ?></td> 
+                                <td><?php echo $cpf_cnpj; ?></td>
+                                <td><?php echo $endereco; ?></td>
+                                <td><?php echo $email; ?></td>
+                                <td><?php echo $telefone; ?></td>
+                                <td><?php echo $data2; ?></td>
+                                <td>
+                                <a class="btn btn-info" href="clientes.php?func=edita&id=<?php echo $id; ?>"><i class="fa fa-pencil-square-o"></i></a>
+
+                                <a class="btn btn-danger" href="clientes.php?func=deleta&id=<?php echo $id; ?>"><i class="fa fa-minus-square"></i></a>
+
+                                </td>
+                            </tr>
+                        <?php 
+
+                            }
+                    
+                        ?>                     
                            
 
                         </tbody>
                       </table>
+                        <?php 
+                            }                        
+                        ?>
                     </div>
                   </div>
                 </div>
@@ -126,23 +190,23 @@ include("conexao.php");
             <form method="POST" action="">
               <div class="form-group">
                 <label for="id_produto">Nome</label>
-                <input type="text" class="form-control mr-2" name="nome" placeholder="Nome" required>
+                <input type="text" class="form-control mr-2" name="nome" id="nome" placeholder="Nome" required>
               </div>
               <div class="form-group">
-                <label for="fornecedor">CPF</label>
-                 <input type="text" class="form-control mr-2" name="cpf_cnpj" placeholder="CPF/CNPJ" required>
+                <label for="fornecedor">CPF ou CNPJ</label>
+                 <input type="text" class="form-control mr-2" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF/CNPJ" required>
               </div>
               <div class="form-group">
                 <label for="quantidade">Endereço</label>
-                <input type="text" class="form-control mr-2" name="endereco" placeholder="Endereço" required>
+                <input type="text" class="form-control mr-2" name="endereco" id="endereco" placeholder="Endereço" required>
               </div>
                <div class="form-group">
                 <label for="fornecedor">Email</label>
-                 <input type="text" class="form-control mr-2" name="email" placeholder="Email" required>
+                 <input type="email" class="form-control mr-2" name="email" id="email" placeholder="Email" required>
               </div>
               <div class="form-group">
                 <label for="fornecedor">Telefone</label>
-                 <input type="text" class="form-control mr-2" name="telefone" placeholder="Telefone" required>
+                 <input type="text" class="form-control mr-2" name="telefone" id="telefone" placeholder="Telefone" required>
               </div>
             </div>
                    
@@ -173,27 +237,38 @@ if(isset($_POST['button'])){
     $email =$_POST['email'];
     $telefone =$_POST['telefone'];
 
-    //cadastrar
-    $query = "select * from usuarios where usuario = '{$usuario}' and senha = '{$senha}'";
+    //vereficar cpf igual 
+    $query_verificar= "select * from clientes where cpf_cnpj = '{$cpf_cnpj}'";
 
-    $result = mysqli_query($conexao, $query);
-    $dado = mysqli_fetch_array($result);
-    $row = mysqli_num_rows($result);
+    $result_verificar = mysqli_query($conexao, $query_verificar);
+    $row_verificar = mysqli_num_rows($result_verificar);
+
+    if($row_verificar > 0){
+        echo "<script language ='javascript'> window.alert('CPF JÁ CADASTRADO'); </scrip>";
+        exit();
+    }
 
 
 $query = "INSERT into clientes (nome,cpf_cnpj, endereco, email, telefone, data) VALUES('$nome', '$cpf_cnpj', '$endereco', '$email', '$telefone', curDate())";
 $result = mysqli_query($conexao, $query);
 
 if($result == ''){
-    echo "<scrip language = 'javascript'> window.alert('Ocorreu um erro ao cadastrar cliente'); </scrip>";
+    echo "<script language = 'javascript'> window.alert('Ocorreu um erro ao cadastrar cliente'); </scrip>";
 
 }else{
-    echo "<scrip language = 'javascript'> window.alert('Salvo com Sucesso!!'); </script>";
+    echo "<script language = 'javascript'> window.alert('Salvo com Sucesso!!'); </script>";
 }
 
 
 }
 ?>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('#telefone').mask('(00) 00000-0000');
+     
+    });
+</script>
 
 
 
