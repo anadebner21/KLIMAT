@@ -122,7 +122,7 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
             <p class="text-dark my-4 text-sm font-weight-normal">
               All rights reserved. Copyright © <script>
                 document.write(new Date().getFullYear())
-              </script> Material Kit by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+              </script> Ana Debner 
             </p>
           </div>
         </div>
