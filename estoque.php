@@ -78,16 +78,16 @@ include('conexao.php');
                   <div class="card-body">
                     <div class="table-responsive">
 
-                      <!--LISTAR TODOS OS CLIENTES -->
+                      <!--LISTAR TODOS OS Materiais -->
 
                       <?php
 
 
                         if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar'] != ''){
                           $nome_material = $_GET['pesquisar'] . '%';
-                           $query = "select * from estoque_materiais where nome_material LIKE '$nome_material'  order by nome asc"; 
+                           $query = "select * from estoque_materiais where nome_material LIKE '$nome_material'  order by nome_material asc"; 
                         }else{ 
-                         $query = "select * from estoque_materiais order by nome asc"; 
+                         $query = "select * from estoque_materiais order by nome_material asc"; 
                         }
 
 
@@ -96,6 +96,7 @@ include('conexao.php');
 
                         $result = mysqli_query($conexao, $query);
                         //$dado = mysqli_fetch_array($result);
+
                         $row = mysqli_num_rows($result);
 
                         if($row == ''){
@@ -115,10 +116,10 @@ include('conexao.php');
                             Nome
                           </th>
                           <th>
-                            Valor_Material
+                            Valor
                           </th>
                           <th>
-                            Quantidade_Material
+                            Quantidade
                           </th>
                            <th>
                             Status
@@ -142,7 +143,7 @@ include('conexao.php');
                             $quantidade_material = $res_1["quantidade_material"];
                             $status = $res_1["status"];
                             $obs = $res_1["obs"];
-                            $id = $res_1["id_material"];
+                            $id_material = $res_1["id_material"];
                             ?>
 
                             <tr>
@@ -153,9 +154,9 @@ include('conexao.php');
                              <td><?php echo $status; ?></td>
                              <td><?php echo $obs; ?></td>
                              <td>
-                             <a class="btn btn-info" href="clientes.php?func=edita&id=<?php echo $id; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                             <a class="btn btn-info" href="estoque.php?func=edita&id_material=<?php echo $id_material; ?>"><i class="fa fa-pencil-square-o"></i></a>
 
-                             <a class="btn btn-danger" href="clientes.php?func=deleta&id=<?php echo $id; ?>"><i class="fa fa-minus-square"></i></a>
+                             <a class="btn btn-danger" href="estoque.php?func=deleta&id_material=<?php echo $id_material; ?>"><i class="fa fa-minus-square"></i></a>
 
                              </td>
                             </tr>
@@ -257,7 +258,7 @@ if(isset($_POST['button'])){
   }
 
 
-$query = "INSERT into estoque_materiais (nome_material, valor_material, quantidade_material, status, obs) VALUES ('$nomenome_material', '$valor_material', '$quantidade_material', '$status', '$obs')";
+$query = "INSERT into estoque_materiais (nome_material, valor_material, quantidade_material, status, obs) VALUES ('$nome_material', '$valor_material', '$quantidade_material', '$status', '$obs')";
 
 $result = mysqli_query($conexao, $query);
 
@@ -275,8 +276,8 @@ if($result == ''){
 <!--EXCLUIR -->
 <?php
 if(@$_GET['func'] == 'deleta'){
-  $id = $_GET['id_material'];
-  $query = "DELETE FROM estoque_materiais where id_material = '$id'";
+  $id_material = $_GET['id_material'];
+  $query = "DELETE FROM estoque_materiais where id_material = '$id_material'";
   mysqli_query($conexao, $query);
   echo "<script language='javascript'> window.location='estoque.php'; </script>";
 }
@@ -287,8 +288,8 @@ if(@$_GET['func'] == 'deleta'){
 <!--EDITAR -->
 <?php
 if(@$_GET['func'] == 'edita'){  
-$id = $_GET['id_material'];
-$query = "select * from estoque_materiais where id_material = '$id'";
+$id_material= $_GET['id_material'];
+$query = "select * from estoque_materiais where id_material = '$id_material'";
 $result = mysqli_query($conexao, $query);
 
  while($res_1 = mysqli_fetch_array($result)){
@@ -318,7 +319,7 @@ $result = mysqli_query($conexao, $query);
               </div>
               <div class="form-group">
                 <label >Quantidade_Material</label>
-                <input type="text" class="form-control mr-2" name="quantidade_material" placeholder="Quantidqde" value="<?php echo $res_1['quantidade_material']; ?>" required>
+                <input type="text" class="form-control mr-2" name="quantidade_material" placeholder="Quantidade" value="<?php echo $res_1['quantidade_material']; ?>" required>
               </div>
                <div class="form-group">
                 <label >Status</label>
@@ -373,7 +374,7 @@ if(isset($_POST['buttonEditar'])){
  
 
 
-$query_editar = "UPDATE estoque_materiais set nome_material = '$nome_material', valor_material = '$valor_material', quantidade_material = '$quantidade_material', status = '$status', obs = '$obs' where id_material = '$id' ";
+$query_editar = "UPDATE estoque_materiais set nome_material = '$nome_material', valor_material = '$valor_material', quantidade_material = '$quantidade_material', status = '$status', obs = '$obs' where id_material = '$id_material' ";
 
 $result_editar = mysqli_query($conexao, $query_editar);
 
