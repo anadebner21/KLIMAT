@@ -150,10 +150,10 @@ include('conexao.php');
 
                           while($res_1 = mysqli_fetch_array($result)){
                             $nome = $res_1["nome"];
-                            $cpf_cnpj = $res_1["telefone"];
+                            $cpf_cnpj = $res_1["cpf_cnpj"];
                             $endereco = $res_1["endereco"];
                             $email = $res_1["email"];
-                            $telefone = $res_1["cpf_cnpj"];
+                            $telefone = $res_1["telefone"];
                             $data = $res_1["data"];
                             $id = $res_1["id"];
 
@@ -202,7 +202,7 @@ include('conexao.php');
         <div class="modal-dialog">
          <!-- Modal content-->
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" >
               
               <h4 class="modal-title">Clientes</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -326,23 +326,23 @@ $result = mysqli_query($conexao, $query);
             <div class="modal-body">
               <form method="POST" action="">
               <div class="form-group">
-                <label for="id_produto">Nome</label>
+                <label >Nome</label>
                 <input type="text" class="form-control mr-2" name="nome" placeholder="Nome" value="<?php echo $res_1['nome']; ?>" required>
               </div>
               <div class="form-group">
-                <label for="id_produto">CPF/CNPJ</label>
+                <label >CPF/CNPJ</label>
                 <input type="text" class="form-control mr-2" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF/CNPJ" value="<?php echo $res_1['cpf_cnpj']; ?>" required>
               </div>
               <div class="form-group">
-                <label for="quantidade">Endereço</label>
+                <label >Endereço</label>
                 <input type="text" class="form-control mr-2" name="endereco" placeholder="Endereço" value="<?php echo $res_1['endereco']; ?>" required>
               </div>
                <div class="form-group">
-                <label for="fornecedor">Email</label>
+                <label >Email</label>
                  <input type="email" class="form-control mr-2" name="email" placeholder="Email" value="<?php echo $res_1['email']; ?>" required>
               </div>
               <div class="form-group">
-                <label for="fornecedor">Telefone</label>
+                <label>Telefone</label>
                  <input type="text" class="form-control mr-2" name="telefone" id="telefone" placeholder="Telefone" value="<?php echo $res_1['telefone']; ?>" required>
               </div>
             </div>
