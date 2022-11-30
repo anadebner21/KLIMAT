@@ -22,7 +22,20 @@ include('conexao.php');
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-
+<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- Material Kit CSS -->
+  <link href="assets/css/material-kit.css?v=3.0.0" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 
 
 </head>
@@ -30,63 +43,100 @@ include('conexao.php');
 
 <body>
 
-
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
+    <div class="container">
+      <a class="navbar-brand  text-dark " rel="tooltip"  data-placement="bottom" target="_blank">
+        KLIMAT - GERENCIAMENTO 
+      </a>
+      <ul class="navbar-nav">
+             
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+           
+      
     <ul class="navbar-nav mr-auto">
       
     </ul>
-    <form class="form-inline my-2 my-lg-0 mr-5">
-      <input name="pesquisarcpf" id="txtcpf" class="form-control mr-sm-2" type="search" placeholder="Buscar pelo CPF/CNPJ" aria-label="Pesquisar">
-      <button name="buttonPesquisarCPF" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-
-    <form class="form-inline my-2 my-lg-0">
-      <input name="pesquisar" class="form-control mr-sm-2" type="search" placeholder="Buscar pelo Nome" aria-label="Pesquisar">
-      <button name="buttonPesquisar" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-</nav>
-
-
-
-
-
-<div class="container">
-
-
     
 
-      <br>
+    
+         </div>
+       
+      </ul>        
+      </div>
+    </div>
+  </nav>
 
-
-         <div class="row">
-           <div class="col-sm-12">
-            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#modalExemplo">Inserir Novo </button>
-
-           </div>
-
-          
+  <div class="page" style="background-image: url('https://www.adagil.com.br/assets/site/img/aplicacao2.png')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="text-center">
+            <h1 class="text-black"></h1>
+            <h3 class="text-secondary">..........</h3>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 
+         
 
-          <div class="content">
+        
+  
+  <div class="content">
             <div class="row">
               <div class="col-md-12">
-                <div class="card">
+                <div class="card text-white bg-dark mb-3">
                   <div class="card-header">
-                    <h4 class="card-title">CLIENTES</h4>
-                  </div>
+                    <h2 class="text-start text-secondary font-weight-bold ">CLIENTES</h2>
+                    <h6 class="card text-right"></h6>
+
+                    <div class="col-xs-4">
+                    <div class="col-xs-4">
+                    <div class="row">
+                    
+  <div class="col-md-3 col-xs-4">
+    <div class="form-group">
+    <form class="form-inline my-2 my-lg-0">
+      <input name="pesquisarcpf" id="txtcpf" class="form-control mr-sm-2" type="search" placeholder="Buscar pelo CPF/CNPJ" aria-label="Pesquisar" style="background-color: 	#C0C0C0;">
+      <button name="buttonPesquisarCPF" class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-4">
+
+    <div class="form-group">
+    <form class="form-inline my-2 my-lg-1">
+      <input name="pesquisar" class="form-control mr-sm-2" type="search" placeholder="Buscar pelo Nome" aria-label="Pesquisar" style="background-color: 	#C0C0C0;">
+      <button name="buttonPesquisar" class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    </div>
+  </div>
+  
+  
+
+  <div class="col-md-3 col-xs-4">
+    <div class="form-group">
+    <h6 class="text-end"><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalExemplo">Inserir Novo</h6>
+
+    
+    </div>
+  </div>
+</div>
+</div>
+
+
+  
+
+
+                    
+                  
+                 
                   <div class="card-body">
-                    <div class="table-responsive">
-
+                    <div class="table-secundary">
                       <!--LISTAR TODOS OS CLIENTES -->
-
                       <?php
-
-
                         if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar'] != ''){
                           $nome = $_GET['pesquisar'] . '%';
                            $query = "select * from clientes where nome LIKE '$nome'  order by nome asc"; 
@@ -94,31 +144,21 @@ include('conexao.php');
                           $nome = $_GET['pesquisarcpf'];
                            $query = "select * from clientes where cpf_cnpj = '$nome'  order by nome asc"; 
                         }
-
                         else{ 
                          $query = "select * from clientes order by nome asc"; 
                         }
-
-
                       
                         
-
                         $result = mysqli_query($conexao, $query);
                         //$dado = mysqli_fetch_array($result);
                         $row = mysqli_num_rows($result);
-
                         if($row == ''){
-
                             echo "<h3> Não existem dados cadastrados no banco </h3>";
-
                         }else{
-
                            ?>
-
                           
-
-                      <table class="table">
-                        <thead class=" text-primary">
+                      <table class=" table">
+                        <thead >
                           
                           <th>
                             Nome
@@ -147,7 +187,6 @@ include('conexao.php');
                         <tbody>
                          
                          <?php 
-
                           while($res_1 = mysqli_fetch_array($result)){
                             $nome = $res_1["nome"];
                             $cpf_cnpj = $res_1["cpf_cnpj"];
@@ -156,13 +195,9 @@ include('conexao.php');
                             $telefone = $res_1["telefone"];
                             $data = $res_1["data"];
                             $id = $res_1["id"];
-
                             $data2 = implode('/', array_reverse(explode('-', $data)));
-
                             ?>
-
                             <tr>
-
                              <td><?php echo $nome; ?></td> 
                              <td><?php echo $cpf_cnpj; ?></td>
                              <td><?php echo $endereco; ?></td>
@@ -170,18 +205,14 @@ include('conexao.php');
                              <td><?php echo $telefone; ?></td>
                              <td><?php echo $data2; ?></td>
                              <td>
-                             <a class="btn btn-info" href="clientes.php?func=edita&id=<?php echo $id; ?>"><i class="fa fa-pencil-square-o"></i></a>
-
-                             <a class="btn btn-danger" href="clientes.php?func=deleta&id=<?php echo $id; ?>"><i class="fa fa-minus-square"></i></a>
-
+                             <a class="btn btn-outline-warning" href="clientes.php?func=edita&id=<?php echo $id; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                             <a class="btn btn-outline-danger" href="clientes.php?func=deleta&id=<?php echo $id; ?>"><i class="fa fa-minus-square"></i></a>
                              </td>
                             </tr>
-
                             <?php 
                               }                        
                             ?>
                             
-
                         </tbody>
                       </table>
                           <?php 
@@ -191,21 +222,20 @@ include('conexao.php');
                   </div>
                 </div>
               </div>
-
 </div>
 
 
 
 
  <!-- Modal -->
-      <div id="modalExemplo" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+      <div id="modalExemplo" class="modal fade" role="dialog" >
+        <div class="modal-dialog" >
          <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content" style="background-color:#708090;">
             <div class="modal-header" >
               
-              <h4 class="modal-title">Clientes</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="text-center text-dark font-weight-bold ">CLIENTE-NOVO</h2>
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
               <form method="POST" action="">
@@ -227,7 +257,7 @@ include('conexao.php');
               </div>
               <div class="form-group">
                 <label for="fornecedor">Telefone</label>
-                 <input type="text" class="form-control mr-2" name="telefone" id="telefone" placeholder="" required>
+                 <input type="text" class="form-control mr-2" name="telefone" id="telefone" placeholder="Telefone" required>
               </div>
             </div>
                    
@@ -241,7 +271,6 @@ include('conexao.php');
           </div>
         </div>
       </div>    
-
 
 
 
@@ -317,7 +346,7 @@ $result = mysqli_query($conexao, $query);
       <div id="modalEditar" class="modal fade" role="dialog">
         <div class="modal-dialog">
          <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content" style="background-color:#708090;">
             <div class="modal-header">
               
               <h4 class="modal-title">CLIENTES</h4>
