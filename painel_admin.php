@@ -31,11 +31,13 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body>
-  <!-- Navbar Transparent -->
+<body style="background-image: url('https://elements-cover-images-0.imgix.net/3e4aa778-b667-4617-a2dd-1212d92331bb?auto=compress%2Cformat&fit=max&w=900&s=dcad91fe49803559f3ba2550dd0ca71a')">
+<span class="mask bg-gradient-dark opacity-4"></span>
+<!-- Navbar Transparent -->
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
+    
     <div class="container">
-      <a class="navbar-brand  text-white " href="https://demos.creative-tim.com/material-kit/presentation" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+      <a class="navbar-brand  text-dark "  rel="tooltip" title="" data-placement="bottom" target="_blank">
         KLIMAT - GERENCIAMENTO 
       </a>
       <ul class="navbar-nav">
@@ -59,31 +61,31 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
   <!-- End Navbar -->
 
 
-  <div class="page-header min-vh-80" style="background-image: url('https://www.adagil.com.br/assets/site/img/aplicacao2.png')">
-    <span class="mask bg-gradient-dark opacity-6"></span>
-    <div class="container">
+  <div class="page-header min-vh-80" style="background-image: url('https://elements-cover-images-0.imgix.net/3e4aa778-b667-4617-a2dd-1212d92331bb?auto=compress%2Cformat&fit=max&w=900&s=dcad91fe49803559f3ba2550dd0ca71a')">
+    <span class="mask bg-gradient-dark opacity-4"></span>
+    <div class="container" >
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="text-center">
-            <h1 class="text-white">FLUISERV</h1>
-            <h3 class="text-white">bem-vindo</h3>
+            <h1 class="text-secondary font-weight-bold">FLUISERV</h1>
+            <h3 class="text-secondary">Administrador</h3>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6 card text-white bg-dark mb-3">
     <div class="container">
       <div class="section text-center">
         <h2 class="title"></h2>
-        <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+        <div class="card card-body  mx-3 mx-md-4 mt-n6 bg-secondary mb-3">
 
           <section class="pt-3 pb-4" id="count-stats">
-          <div class="content">
+          <div class="content ">
         <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body ">
+          <div class="col-lg-4 col-md-6 col-sm-6 ">
+            <div class="card card-stats bg-dark">
+              <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
@@ -93,93 +95,55 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
                   <div class="col-7 col-md-8">
                     <div class="words">
                       <h3><p class="card-category"><a href="clientes.php">CLIENTES</a></p></h3>
-                      <p class="card-title">Veja seus clientes
+                      <p class="card-title">Veja seus clientes....
                         <p>
+                          
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body ">
+          <div class="col-lg-4 col-md-6 col-sm-6 ">
+            <div class="card card-stats bg-dark">
+              <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-money-coins text-success"></i>
+                      <i class="nc-icon nc-badge"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
-                    <div class="numbers">
-                      <p class="card-category"><a href="orcamento.php">ORÇAMENTOS</a></p>
-                      <p class="card-title">
+                    <div class="words">
+                      <h3><p class="card-category"><a href="abrir_orcamento.php">ORÇT</a></p></h3>
+                      <p class="card-title">Veja seus orçamentos
                         <p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <i class="fa fa-calendar-o"></i> Last day
-                </div>
-              </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body ">
+          <div class="col-lg-4 col-md-6 col-sm-6 ">
+            <div class="card card-stats bg-dark">
+              <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-vector text-danger"></i>
+                      <i class="nc-icon nc-badge"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
-                    <div class="numbers">
-                    <p class="card-category"><a href="estoque.php">ESTOQUE</a></p>
-                      <p class="card-title">
+                    <div class="words">
+                      <h3><p class="card-category"><a href="clientes.php">ESTOQUE</a></p></h3>
+                      <p class="card-title">Veja seus materiais
                         <p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <i class="fa fa-clock-o"></i> In the last hour
-                </div>
-              </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-              <div class="card-body ">
-                <div class="row">
-                  <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-favourite-28 text-primary"></i>
-                    </div>
-                  </div>
-                  <div class="col-7 col-md-8">
-                    <div class="numbers">
-                      <p class="card-category">Followers</p>
-                      <p class="card-title">+45K
-                        <p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <i class="fa fa-refresh"></i> Update now
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         
 
           </section>

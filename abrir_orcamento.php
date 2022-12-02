@@ -52,7 +52,7 @@ include('conexao.php');
              <option value="Cancelado">Cancelado</option> 
       </select>
 
-      <input name="txtpesquisar" class="form-control mr-sm-2" type="date" placeholder="Pesquisar" aria-label="Pesquisar">
+      <input name="pesquisar" class="form-control mr-sm-2" type="date" placeholder="Pesquisar" aria-label="Pesquisar">
       <button name="buttonPesquisar" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
     </form>
   </div>
@@ -95,23 +95,23 @@ include('conexao.php');
                       <?php
 
 
-                        if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] != '' and $_GET['status'] != 'Todos'){
-                          $data_ocamento = $_GET['txtpesquisar'] . '%';
-                          $statusOrc = $_GET['status'];
+                        if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar'] != '' and $_GET['status'] != 'Todos'){
+                          $data_orcamento = $_GET['pesquisar'] . '%';
+                          $status = $_GET['status'];
 
-                           $query = "select o.id, o.cliente, o.tecnico, o.produto, o.valor_total, o.status, c.nome as cli_nome, f.nome as func_nome from orcamentos as o INNER JOIN clientes as c on o.cliente = c.cpf INNER JOIN funcionarios as f on o.tecnico = f.id where data_abertura = '$data' and status = '$statusOrc' order by id asc";
+                           $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_ente from orcamento as o INNER JOIN clientes as c on o.cliente = c.nome where data_orcamento = '$data_orcamento' and status = '$status' order by id_orcamento asc";
 
-                         }else if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] == '' and $_GET['status'] != 'Todos'){
-                         $statusOrc = $_GET['status'];
-                         $query = "select o.id, o.cliente, o.tecnico, o.produto, o.valor_total, o.status, c.nome as cli_nome, f.nome as func_nome from orcamentos as o INNER JOIN clientes as c on o.cliente = c.cpf INNER JOIN funcionarios as f on o.tecnico = f.id where data_abertura = curDate() and status = '$statusOrc' order by id asc"; 
+                         }else if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar'] == '' and $_GET['status'] != 'Todos'){
+                         $status = $_GET['status'];
+                         $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_ente from orcamento as o INNER JOIN clientes as c on o.cliente = c.nome INNER JOIN where data_orcamento = curDate() and status = '$status' order by id_orcamento asc"; 
 
-                          }else if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar']!= '' and $_GET['status'] == 'Todos'){
-                         $data = $_GET['txtpesquisar'] . '%';
-                         $query = "select o.id, o.cliente, o.tecnico, o.produto, o.valor_total, o.status, c.nome as cli_nome, f.nome as func_nome from orcamentos as o INNER JOIN clientes as c on o.cliente = c.cpf INNER JOIN funcionarios as f on o.tecnico = f.id where data_abertura = '$data' order by id asc"; 
-                        
+                          }else if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar']!= '' and $_GET['status'] == 'Todos'){
+                         $data = $_GET['pesquisar'] . '%';
+                         $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_ente from orcamento as o INNER JOIN clientes as c on o.cliente = c.nome INNER JOIN  where data_orcamento= '$data_orcamento' order by id_orcamento asc"; 
+                      
 
                         }else{
-                         $query = "select o.id, o.cliente, o.tecnico, o.produto, o.valor_total, o.status, c.nome as cli_nome, f.nome as func_nome from orcamentos as o INNER JOIN clientes as c on o.cliente = c.cpf INNER JOIN funcionarios as f on o.tecnico = f.id where data_abertura = curDate()  order by id asc"; 
+                         $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_ente from orcamento as o INNER JOIN clientes as c on o.cliente = c.nome INNER JOIN where data_orcamento = curDate()  order by id_orcamento asc"; 
                         }
 
                         
@@ -140,7 +140,7 @@ include('conexao.php');
                             Técnico
                           </th>
                           <th>
-                            Produto
+                            Serviço a ser Prestado
                           </th>
                            <th>
                             Valor Total
@@ -160,13 +160,13 @@ include('conexao.php');
                          <?php 
 
                           while($res_1 = mysqli_fetch_array($result)){
-                            $cliente = $res_1["cli_nome"];
-                            $tecnico = $res_1["func_nome"];
-                            $produto = $res_1["produto"];
+                            $cliente = $res_1["cliente"];
+                            $tecnico_responsavel = $res_1["tecnico_responsavel"];
+                            $servico_oferecido = $res_1["servico_oferecido"];
                             $valor_total = $res_1["valor_total"];
                             $status = $res_1["status"];
                            
-                            $id = $res_1["id"];
+                            $id_orcamento = $res_1["id_orcamento"];
 
                          
                             ?>
@@ -174,16 +174,16 @@ include('conexao.php');
                             <tr>
 
                              <td><?php echo $cliente; ?></td>
-                             <td><?php echo $tecnico; ?></td> 
-                             <td><?php echo $produto; ?></td>
+                             <td><?php echo $tecnico_responsavel; ?></td> 
+                             <td><?php echo $servico_oferecido; ?></td>
                              <td><?php echo $valor_total; ?></td>
                              <td><?php echo $status; ?></td>
                              
                            
                              <td>
-                             <a class="btn btn-info" href="abrir_orcamentos.php?func=edita&id=<?php echo $id; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                             <a class="btn btn-info" href="abrir_orcamentos.php?func=edita&id=<?php echo $id_orcamento; ?>"><i class="fa fa-pencil-square-o"></i></a>
 
-                             <a class="btn btn-danger" href="abrir_orcamentos.php?func=deleta&id=<?php echo $id; ?>"><i class="fa fa-minus-square"></i></a>
+                             <a class="btn btn-danger" href="abrir_orcamentos.php?func=deleta&id=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
 
                              </td>
                             </tr>
@@ -221,16 +221,16 @@ include('conexao.php');
             <div class="modal-body">
               <form method="POST" action="">
               <div class="form-group">
-                <label for="fornecedor">CPF</label>
-                 <input type="text" class="form-control mr-2" name="txtcpf" id="txtcpf" placeholder="CPF" required>
+                <label for="fornecedor">Técnico Responsável</label>
+                 <input type="text" class="form-control mr-2" name="tecnico_responsavel" placeholder="Técnico Responsavel" required>
               </div>
               <div class="form-group">
-               <label for="fornecedor">Técnico</label>
+               <label for="fornecedor">Cliente</label>
                 
-                  <select class="form-control mr-2" id="category" name="funcionario">
+                  <select class="form-control mr-2" id="category" name="cliente">
                   <?php
                   
-                  $query = "SELECT * FROM funcionarios where cargo = 'Funcionário' ORDER BY nome asc";
+                  $query = "SELECT * FROM clientes ORDER BY nome asc";
                   $result = mysqli_query($conexao, $query);
 
                   if($result){
@@ -243,24 +243,46 @@ include('conexao.php');
                   ?>
                   </select>
               </div>
+             
+             
               <div class="form-group">
-                <label for="quantidade">Produto</label>
-                <input type="text" class="form-control mr-2" name="txtproduto" placeholder="Produto" required>
+                <label for="quantidade">Cliente Responsável Pelo Traamento do Serviço</label>
+                <input type="text" class="form-control mr-2" name="cliente_representante_projeto " placeholder="Cliente Repressentante" required>
               </div>
               
                <div class="form-group">
-                <label for="quantidade">Num Série</label>
-                <input type="text" class="form-control mr-2" name="txtserie" placeholder="Número de Série" required>
+                <label for="quantidade">Quantidade Aparelhos</label>
+                <input type="text" class="form-control mr-2" name="quantidade_aparelhos" placeholder="Qtd Aparelhos" required>
               </div>
 
                <div class="form-group">
-                <label for="quantidade">Defeito</label>
-                <input type="text" class="form-control mr-2" name="txtdefeito" placeholder="Defeito" required>
+                <label for="quantidade">Servico a ser prestado</label>
+                <input type="text" class="form-control mr-2" name="servico_oferecido" placeholder="Serviço a ser Prestado" required>
               </div>
 
               <div class="form-group">
-                <label for="quantidade">Observações</label>
-                <input type="text" class="form-control mr-2" name="txtobs" placeholder="Observações" required>
+                <label for="quantidade">Descrição Serviço</label>
+                <input type="text" class="form-control mr-2" name="descricao" placeholder="Descrição" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Materiais</label>
+                <input type="text" class="form-control mr-2" name="materiais" placeholder="Materiais" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Tempo Garantia</label>
+                <input type="text" class="form-control mr-2" name="tempo_garantia" placeholder="Garantia" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Validade Orçamento</label>
+                <input type="text" class="form-control mr-2" name="validade_orcamento" placeholder="Validade Orçamento" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Status</label>
+                <input type="text" class="form-control mr-2" name="descricao" placeholder="Descrição" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">valor Total</label>
+                <input type="text" class="form-control mr-2" name="valor_total" placeholder="Valor ttl" required>
               </div>
              
             </div>
@@ -289,26 +311,23 @@ include('conexao.php');
 
 <?php
 if(isset($_POST['button'])){
-  $nome = $_POST['txtcpf'];
-  $tecnico = $_POST['funcionario'];
-  $produto = $_POST['txtproduto'];
-  $serie = $_POST['txtserie'];
-  $defeito = $_POST['txtdefeito'];
-  $obs = $_POST['txtobs'];
+  $tecnico_responsavel = $_POST['tecnico_responsavel'];
+  $cliente = $_POST['cliente'];
+  $cliente_representante_projeto = $_POST['cliente_representante_projeto'];
+  $quantidade_aparelhos = $_POST['quantidade_aparelhos'];
+  $servico_oferecido = $_POST['servico_oferecido'];
+  $descricao = $_POST['descricao'];
+  $materiais = $_POST['materiais'];
+  $tempo_garantia = $_POST['tempo_garantia'];
+  $sub_total = $_POST['sub_total'];
+  $validade_orcamento = $_POST['validade_orcamento'];
+  $status = $_POST['status'];
+  $valor_total = $_POST['valor_total'];
 
 
-  //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
-  $query_verificar = "select * from clientes where cpf = '$nome' ";
 
-  $result_verificar = mysqli_query($conexao, $query_verificar);
-  $row_verificar = mysqli_num_rows($result_verificar);
 
-  if($row_verificar <= 0){
-  echo "<script language='javascript'> window.alert('O Cliente não Está Cadastrado!'); </script>";
-  exit();
-  } 
-
-$query = "INSERT into orcamentos (cliente, tecnico, produto, serie, problema, obs, valor_total, data_abertura, status) VALUES ('$nome', '$tecnico', '$produto', '$serie', '$defeito', '$obs', '0',  curDate(), 'Aberto' )";
+$query = "INSERT into orcamentos ('data_orcamento', 'tecnico_responsavel', 'cliente', 'cliente_representante_projeto', 'quantidade_aparelhos', 'servico_oferecido', 'descricao', 'materiais', 'tempo_garantia', 'sub_total', 'validade_orcamento', status, 'valor_total') VALUES ( curDate(), '$tecnico_responsavel', '$cliente', '$cliente_representante_projeto', '$quantidade_aparelhos', '$servico_oferecido', '$descricao',  '$materiais','$tempo_garantia', '$sub_total','$validade_orcamento, 'Aberto','$valor_total' )";
 
 $result = mysqli_query($conexao, $query);
 
@@ -326,8 +345,8 @@ if($result == ''){
 <!--EXCLUIR -->
 <?php
 if(@$_GET['func'] == 'deleta'){
-  $id = $_GET['id'];
-  $query = "DELETE FROM orcamentos where id = '$id'";
+  $id_orcamento = $_GET['id_orcamento'];
+  $query = "DELETE FROM orcamento where id_orcamento = '$id_orcamento'";
   mysqli_query($conexao, $query);
   echo "<script language='javascript'> window.location='abrir_orcamentos.php'; </script>";
 }
@@ -338,8 +357,8 @@ if(@$_GET['func'] == 'deleta'){
 <!--EDITAR -->
 <?php
 if(@$_GET['func'] == 'edita'){  
-$id = $_GET['id'];
-$query = "select * from orcamentos where id = '$id'";
+$id_orcamento = $_GET['id_orcamento'];
+$query = "select * from orcamento where id_orcamento = '$id_orcamento'";
 $result = mysqli_query($conexao, $query);
 
  while($res_1 = mysqli_fetch_array($result)){
@@ -359,14 +378,18 @@ $result = mysqli_query($conexao, $query);
             </div>
             <div class="modal-body">
               <form method="POST" action="">
+              <div class="form-group">
+                <label for="quantidade">Técnico</label>
+                <input type="text" class="form-control mr-2" name="tecnico_responsavel" placeholder="tecnico_responsavel" value="<?php echo $res_1['tecnico_responsavel']; ?>" required>
+              </div>
              
               <div class="form-group">
-               <label for="fornecedor">Técnico</label>
+               <label for="fornecedor">Cliente</label>
                 
-                  <select class="form-control mr-2" id="category" name="funcionario">
+                  <select class="form-control mr-2" id="category" name="cliente">
                   <?php
                   
-                  $query = "SELECT * FROM funcionarios where cargo = 'Funcionário' ORDER BY nome asc";
+                  $query = "SELECT * FROM clientes ORDER BY nome asc";
                   $result = mysqli_query($conexao, $query);
 
                   if($result){
@@ -390,23 +413,47 @@ $result = mysqli_query($conexao, $query);
                   </select>
               </div>
               <div class="form-group">
-                <label for="quantidade">Produto</label>
-                <input type="text" class="form-control mr-2" name="txtproduto" value="<?php echo $res_1['produto']; ?>" placeholder="Produto" required>
+                <label for="quantidade">Cliente representante_projeto</label>
+                <input type="text" class="form-control mr-2" name="cliente_representante_projeto" value="<?php echo $res_1['cliente_representante_projeto']; ?>" placeholder="Cliente Repre Projeto" required>
               </div>
               
                <div class="form-group">
-                <label for="quantidade">Num Série</label>
-                <input type="text" class="form-control mr-2" name="txtserie" placeholder="Número de Série" value="<?php echo $res_1['serie']; ?>" required>
+                <label for="quantidade">Quantidade Aparelhos</label>
+                <input type="text" class="form-control mr-2" name="quantidade_aparelhos" placeholder="aparelhos" value="<?php echo $res_1['quantidade_aparelhos']; ?>" required>
               </div>
 
                <div class="form-group">
-                <label for="quantidade">Defeito</label>
-                <input type="text" class="form-control mr-2" name="txtdefeito" value="<?php echo $res_1['problema']; ?>" placeholder="Defeito" required>
+                <label for="quantidade">Serviço A Ser Prestado</label>
+                <input type="text" class="form-control mr-2" name="servico_oferecido" value="<?php echo $res_1['servico_oferecido']; ?>" placeholder="servico_oferecido" required>
               </div>
 
               <div class="form-group">
-                <label for="quantidade">Observações</label>
-                <input type="text" class="form-control mr-2" name="txtobs" placeholder="Observações" value="<?php echo $res_1['obs']; ?>" required>
+                <label for="quantidade">Descrição</label>
+                <input type="text" class="form-control mr-2" name="descricao" placeholder="descricao" value="<?php echo $res_1['descricao']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Materiais</label>
+                <input type="text" class="form-control mr-2" name="materiais" placeholder="materiais" value="<?php echo $res_1['materiais']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Tempo Garantia</label>
+                <input type="text" class="form-control mr-2" name="tempo_garantia" placeholder="tempo_garantia" value="<?php echo $res_1['tempo_garantia']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Sub Total</label>
+                <input type="text" class="form-control mr-2" name="sub_total" placeholder="sub_total" value="<?php echo $res_1['sub_total']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Validade Orcamento</label>
+                <input type="text" class="form-control mr-2" name="validade_orcamento" placeholder="validade_orcamento" value="<?php echo $res_1['validade_orcamento']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Status</label>
+                <input type="text" class="form-control mr-2" name="status" placeholder="status" value="<?php echo $res_1['status']; ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Valor Total</label>
+                <input type="text" class="form-control mr-2" name="valor_total" placeholder="valor_total" value="<?php echo $res_1['valor_total']; ?>" required>
               </div>
              
             </div>
@@ -429,17 +476,24 @@ $result = mysqli_query($conexao, $query);
 <!--Comando para editar os dados UPDATE -->
 <?php
 if(isset($_POST['buttonEditar'])){
+  $tecnico_responsavel = $_POST['tecnico_responsavel'];
+  $cliente = $_POST['cliente'];
+  $cliente_representante_projeto = $_POST['cliente_representante_projeto'];
+  $quantidade_aparelhos = $_POST['quantidade_aparelhos'];
+  $servico_oferecido = $_POST['servico_oferecido'];
+  $descricao = $_POST['descricao'];
+  $materiais = $_POST['materiais'];
+  $tempo_garantia = $_POST['tempo_garantia'];
+  $sub_total = $_POST['sub_total'];
+  $validade_orcamento = $_POST['validade_orcamento'];
+  $status = $_POST['status'];
+  $valor_total = $_POST['valor_total'];
   
-  $tecnico = $_POST['funcionario'];
-  $produto = $_POST['txtproduto'];
-  $serie = $_POST['txtserie'];
- $defeito = $_POST['txtdefeito'];
-  $obs = $_POST['txtobs'];
 
 
 
 
-$query_editar = "UPDATE orcamentos set tecnico = '$tecnico', produto = '$produto', serie = '$serie', problema = '$defeito', obs = '$obs' where id = '$id' ";
+$query_editar = "UPDATE orcamento set tecnico_responsavel = '$tecnico_responsavel', cliente = '$cliente', cliente_representante_projeto = '$cliente_representante_projeto', quantidade_aparelhos = '$quantidade_aparelhos', servico_oferecido = '$servico_oferecido',descricao = '$descricao', materiais = '$materiais', tempo_garantia = '$tempo_garantia',sub_total = '$sub_total',validade_orcamento = '$validade_orcamento',status = '$status',valor_total = '$valor_total', where id_orcamento = '$id_orcamento' ";
 
 $result_editar = mysqli_query($conexao, $query_editar);
 
@@ -461,8 +515,7 @@ if($result_editar == ''){
 
 <script type="text/javascript">
     $(document).ready(function(){
-      $('#txttelefone').mask('(00) 00000-0000');
-      $('#txtcpf').mask('000.000.000-00');
+      $('#telefone').mask('(00) 00000-0000');
       });
 </script>
 
