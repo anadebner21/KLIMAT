@@ -13,11 +13,15 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
 <html lang="pt-br">
 
 <head>
-  <title>KLIMAT</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="img/Klimat_Logo__1_-removebg-preview.png">
+  <link rel="icon" type="image/png" href="img/Klimat_Logo__1_-removebg-preview.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    KLIMAT-GERENCIAMENTO
+  </title>
+  <!-- Required meta tags -->
+  
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -29,17 +33,30 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
   <link href="assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body style="background-image: url('https://elements-cover-images-0.imgix.net/3e4aa778-b667-4617-a2dd-1212d92331bb?auto=compress%2Cformat&fit=max&w=900&s=dcad91fe49803559f3ba2550dd0ca71a')">
-<span class="mask bg-gradient-dark opacity-4"></span>
+<body style="background-color:	#2F4F4F;">
+
 <!-- Navbar Transparent -->
-  <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
-    
+  <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent" >
+  
     <div class="container">
-      <a class="navbar-brand  text-dark "  rel="tooltip" title="" data-placement="bottom" target="_blank">
-        KLIMAT - GERENCIAMENTO 
-      </a>
+    
+          <a class="navbar-center text-dark " >
+            
+              KLIMAT-GERENCIAMENTO  
+          </a>
+          
       <ul class="navbar-nav">
              
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
@@ -52,17 +69,19 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
                 </a>
             </li> 
            </ul>
-         </div>
+          </div>
        
-      </ul>        
-      </div>
+        </ul> 
+      </div>   
+    
+    
     </div>
   </nav>
   <!-- End Navbar -->
 
 
-  <div class="page-header min-vh-80" style="background-image: url('https://elements-cover-images-0.imgix.net/3e4aa778-b667-4617-a2dd-1212d92331bb?auto=compress%2Cformat&fit=max&w=900&s=dcad91fe49803559f3ba2550dd0ca71a')">
-    <span class="mask bg-gradient-dark opacity-4"></span>
+  <div class="page-header min-vh-80" style="background-image: url('https://i.pinimg.com/564x/8b/52/3f/8b523f7bf1cd8846bdf47f76b6326512.jpg')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
     <div class="container" >
       <div class="row">
         <div class="col-md-8 mx-auto">
@@ -94,8 +113,8 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="words">
-                      <h3><p class="card-category"><a href="clientes.php">CLIENTES</a></p></h3>
-                      <p class="card-title">Veja seus clientes....
+                      <h3 ><p class="card-category" class="text-muted" ><a href="clientes.php" class="text-light">CLIENTES</a></p></h3>
+                      <p class="card-title">Veja seus clientes
                         <p>
                           
                     </div>
@@ -109,13 +128,14 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
               <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
+                  <div class="icon-big text-center icon-warning">
+                      
                       <i class="nc-icon nc-badge"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="words">
-                      <h3><p class="card-category"><a href="abrir_orcamento.php">ORÇT</a></p></h3>
+                      <h3><p class="card-category" class="text-muted"><a href="abrir_orcamento.php"  class="text-light">ORÇAMENTO</a></p></h3>
                       <p class="card-title">Veja seus orçamentos
                         <p>
                     </div>
@@ -135,7 +155,7 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="words">
-                      <h3><p class="card-category"><a href="clientes.php">ESTOQUE</a></p></h3>
+                      <h3><p class="card-category"  class="text-muted"><a href="estoque.php"  class="text-light">ESTOQUE</a></p></h3>
                       <p class="card-title">Veja seus materiais
                         <p>
                     </div>

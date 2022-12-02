@@ -17,10 +17,22 @@ include('conexao.php');
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- Material Kit CSS -->
+  <link href="assets/css/material-kit.css?v=3.0.0" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 
 
 
@@ -30,53 +42,79 @@ include('conexao.php');
 <body>
 
 
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
+    <div class="container">
+      <a class="navbar-brand  text-dark " rel="tooltip"  data-placement="bottom" target="_blank">
+        KLIMAT - GERENCIAMENTO 
+      </a>
+      <ul class="navbar-nav">
+             
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+           
+      
     <ul class="navbar-nav mr-auto">
       
     </ul>
-    <form class="form-inline my-2 my-lg-0 mr-5">
-     
-    <form class="form-inline my-2 my-lg-0">
-      <input name="pesquisar" class="form-control mr-sm-2" type="search" placeholder="Buscar pelo Nome" aria-label="Pesquisar">
-      <button name="buttonPesquisar" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-</nav>
-
-
-
-
-
-<div class="container">
-
-
     
 
-      <br>
+    
+         </div>
+       
+      </ul>        
+      </div>
+    </div>
+  </nav>
+ 
+   
 
-
-         <div class="row">
-           <div class="col-sm-12">
-            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#modalExemplo">Inserir Novo </button>
-
-           </div>
-
-          
+<div class="page" style="background-image: url('https://www.adagil.com.br/assets/site/img/aplicacao2.png')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="text-center">
+            <h1 class="text-black"></h1>
+            <h3 class="text-secondary">..........</h3>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 
 
-          <div class="content">
+
+<div class="content">
             <div class="row">
               <div class="col-md-12">
-                <div class="card">
+                <div class="card text-white bg-dark mb-3">
                   <div class="card-header">
-                    <h4 class="card-title">ESTOQUE</h4>
-                  </div>
+                  <h2 class="text-start text-secondary font-weight-bold ">ORÇAMENTO</h2>
+                    <h6 class="card text-right"></h6>
+
+                  <div class="col-xs-4">
+                  <div class="col-xs-4">
+                  <div class="row">
+                    
+  <div class="col-md-9 col-xs-4">
+    <div class="form-group"> 
+     <form class="form-inline my-2 my-lg-0">
+       <input name="pesquisar" class="form-control mr-sm-2" type="search" placeholder="Buscar pelo Nome" aria-label="Pesquisar">
+       <button name="buttonPesquisar" class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+     </form>
+    </div>
+  </div>
+  <div class="col-md-3 col-xs-4">
+    <div class="form-group">
+    <h6 class="text-end"><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalExemplo">Inserir Novo </button></h6>
+    </div>
+  </div>
+</div>
+</div>
+
+
+  
                   <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-secundary">
 
                       <!--LISTAR TODOS OS Materiais -->
 
@@ -110,7 +148,7 @@ include('conexao.php');
                           
 
                       <table class="table">
-                        <thead class=" text-primary">
+                        <thead>
                           
                           <th>
                             Nome
@@ -154,9 +192,9 @@ include('conexao.php');
                              <td><?php echo $status; ?></td>
                              <td><?php echo $obs; ?></td>
                              <td>
-                             <a class="btn btn-info" href="estoque.php?func=edita&id_material=<?php echo $id_material; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                             <a class="btn btn-outline-warning" href="estoque.php?func=edita&id_material=<?php echo $id_material; ?>"><i class="fa fa-pencil-square-o"></i></a>
 
-                             <a class="btn btn-danger" href="estoque.php?func=deleta&id_material=<?php echo $id_material; ?>"><i class="fa fa-minus-square"></i></a>
+                             <a class="btn btn-outline-danger" href="estoque.php?func=deleta&id_material=<?php echo $id_material; ?>"><i class="fa fa-minus-square"></i></a>
 
                              </td>
                             </tr>
@@ -185,10 +223,10 @@ include('conexao.php');
       <div id="modalExemplo" class="modal fade" role="dialog">
         <div class="modal-dialog">
          <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content" style="background-color:#708090;">
             <div class="modal-header" >
               
-              <h4 class="modal-title">MATERIAL</h4>
+              <h2 class="text-center text-dark font-weight-bold ">MATERIAL</h2>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -301,7 +339,7 @@ $result = mysqli_query($conexao, $query);
       <div id="modalEditar" class="modal fade" role="dialog">
         <div class="modal-dialog">
          <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content" style="background-color:#708090;">
             <div class="modal-header">
               
               <h4 class="modal-title">Material</h4>
