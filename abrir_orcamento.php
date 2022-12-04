@@ -99,19 +99,19 @@ include('conexao.php');
                           $data_orcamento = $_GET['pesquisar'] . '%';
                           $status = $_GET['status'];
 
-                           $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_ente from orcamento as o INNER JOIN clientes as c on o.cliente = c.nome where data_orcamento = '$data_orcamento' and status = '$status' order by id_orcamento asc";
+                           $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente, o.servico_oferecido, o.status, o.valor_total, c.nome as cliente from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = '$data_orcamento' and o.status = '$status' order by o.id_orcamento asc";
 
                          }else if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar'] == '' and $_GET['status'] != 'Todos'){
-                         $status = $_GET['status'];
-                         $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_ente from orcamento as o INNER JOIN clientes as c on o.cliente = c.nome INNER JOIN where data_orcamento = curDate() and status = '$status' order by id_orcamento asc"; 
+                          $status = $_GET['status'];
+                          $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cliente from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = curDate() and o.status = '$status' order by o.id_orcamento asc"; 
 
-                          }else if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar']!= '' and $_GET['status'] == 'Todos'){
-                         $data = $_GET['pesquisar'] . '%';
-                         $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_ente from orcamento as o INNER JOIN clientes as c on o.cliente = c.nome INNER JOIN  where data_orcamento= '$data_orcamento' order by id_orcamento asc"; 
+                        }else if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar']!= '' and $_GET['status'] == 'Todos'){
+                            $data_orcamento = $_GET['pesquisar'] . '%';
+                            $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cliente from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento= '$data_orcamento' order by o.id_orcamento asc"; 
                       
 
                         }else{
-                         $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_ente from orcamento as o INNER JOIN clientes as c on o.cliente = c.nome INNER JOIN where data_orcamento = curDate()  order by id_orcamento asc"; 
+                            $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cliente from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = curDate()  order by o.id_orcamento asc"; 
                         }
 
                         
@@ -119,19 +119,16 @@ include('conexao.php');
                         $result = mysqli_query($conexao, $query);
                         //$dado = mysqli_fetch_array($result);
                         $row = mysqli_num_rows($result);
-
                         if($row == ''){
 
                             echo "<h3> Não existem dados cadastrados no banco </h3>";
 
                         }else{
 
-                           ?>
-
-                          
-
+                          ?>
+              
                       <table class="table">
-                        <thead class=" text-primary">
+                        <thead>
                           
                           <th>
                             Cliente
@@ -158,26 +155,30 @@ include('conexao.php');
                         <tbody>
                          
                          <?php 
-
                           while($res_1 = mysqli_fetch_array($result)){
-                            $cliente = $res_1["cliente"];
+  
                             $tecnico_responsavel = $res_1["tecnico_responsavel"];
+                            $cliente = $res_1["cliente"];
                             $servico_oferecido = $res_1["servico_oferecido"];
                             $valor_total = $res_1["valor_total"];
                             $status = $res_1["status"];
                            
                             $id_orcamento = $res_1["id_orcamento"];
+                            $data_orcamento = $res_1["data_orcamento"];
+                            $data2 = implode('/', array_reverse(explode('-', $data_orcamento)));
 
                          
                             ?>
 
                             <tr>
 
-                             <td><?php echo $cliente; ?></td>
-                             <td><?php echo $tecnico_responsavel; ?></td> 
+                             <td><?php echo $tecnico_responsavel; ?></td>
+                             <td><?php echo $cliente; ?></td> 
                              <td><?php echo $servico_oferecido; ?></td>
                              <td><?php echo $valor_total; ?></td>
                              <td><?php echo $status; ?></td>
+                             <td><?php echo $data2; ?></td>
+
                              
                            
                              <td>
@@ -246,13 +247,13 @@ include('conexao.php');
              
              
               <div class="form-group">
-                <label for="quantidade">Cliente Responsável Pelo Traamento do Serviço</label>
-                <input type="text" class="form-control mr-2" name="cliente_representante_projeto " placeholder="Cliente Repressentante" required>
+                <label for="quantidade">Cliente Responsável Pelo Tratamento do Serviço</label>
+                <input type="text" class="form-control mr-2" name="cliente_representante_projeto" placeholder="Cliente Representante" required>
               </div>
               
                <div class="form-group">
                 <label for="quantidade">Quantidade Aparelhos</label>
-                <input type="text" class="form-control mr-2" name="quantidade_aparelhos" placeholder="Qtd Aparelhos" required>
+                <input type="number" class="form-control mr-2" name="quantidade_aparelhos" placeholder="Qtd Aparelhos" required>
               </div>
 
                <div class="form-group">
@@ -265,21 +266,18 @@ include('conexao.php');
                 <input type="text" class="form-control mr-2" name="descricao" placeholder="Descrição" required>
               </div>
               <div class="form-group">
-                <label for="quantidade">Materiais</label>
-                <input type="text" class="form-control mr-2" name="materiais" placeholder="Materiais" required>
-              </div>
-              <div class="form-group">
                 <label for="quantidade">Tempo Garantia</label>
                 <input type="text" class="form-control mr-2" name="tempo_garantia" placeholder="Garantia" required>
+              </div>
+              <div class="form-group">
+                <label for="quantidade">Sub-Total</label>
+                <input type="text" class="form-control mr-2" name="sub_total" placeholder="Sub-total" required>
               </div>
               <div class="form-group">
                 <label for="quantidade">Validade Orçamento</label>
                 <input type="text" class="form-control mr-2" name="validade_orcamento" placeholder="Validade Orçamento" required>
               </div>
-              <div class="form-group">
-                <label for="quantidade">Status</label>
-                <input type="text" class="form-control mr-2" name="descricao" placeholder="Descrição" required>
-              </div>
+              
               <div class="form-group">
                 <label for="quantidade">valor Total</label>
                 <input type="text" class="form-control mr-2" name="valor_total" placeholder="Valor ttl" required>
@@ -317,17 +315,15 @@ if(isset($_POST['button'])){
   $quantidade_aparelhos = $_POST['quantidade_aparelhos'];
   $servico_oferecido = $_POST['servico_oferecido'];
   $descricao = $_POST['descricao'];
-  $materiais = $_POST['materiais'];
   $tempo_garantia = $_POST['tempo_garantia'];
   $sub_total = $_POST['sub_total'];
   $validade_orcamento = $_POST['validade_orcamento'];
-  $status = $_POST['status'];
   $valor_total = $_POST['valor_total'];
 
 
 
 
-$query = "INSERT into orcamentos ('data_orcamento', 'tecnico_responsavel', 'cliente', 'cliente_representante_projeto', 'quantidade_aparelhos', 'servico_oferecido', 'descricao', 'materiais', 'tempo_garantia', 'sub_total', 'validade_orcamento', status, 'valor_total') VALUES ( curDate(), '$tecnico_responsavel', '$cliente', '$cliente_representante_projeto', '$quantidade_aparelhos', '$servico_oferecido', '$descricao',  '$materiais','$tempo_garantia', '$sub_total','$validade_orcamento, 'Aberto','$valor_total' )";
+$query = "INSERT INTO orcamento (data_orcamento, tecnico_responsavel, cliente, cliente_representante_projeto, quantidade_aparelhos, servico_oferecido, descricao, tempo_garantia, sub_total, validade_orcamento, status, valor_total) VALUES (curDate(), '$tecnico_responsavel', '$cliente', '$cliente_representante_projeto', '$quantidade_aparelhos', '$servico_oferecido', '$descricao','$tempo_garantia', '$sub_total', date_add(), 'Aberto','$valor_total' )";
 
 $result = mysqli_query($conexao, $query);
 
@@ -386,7 +382,7 @@ $result = mysqli_query($conexao, $query);
               <div class="form-group">
                <label for="fornecedor">Cliente</label>
                 
-                  <select class="form-control mr-2" id="category" name="cliente">
+                  <select class="form-control mr-2" id="category" name="nome">
                   <?php
                   
                   $query = "SELECT * FROM clientes ORDER BY nome asc";
@@ -397,15 +393,6 @@ $result = mysqli_query($conexao, $query);
                       ?>                                             
                  <option value="<?php echo $res_2['id']; ?>"><?php echo $res_2['nome']; ?></option> 
                       <?php      
-                    }
-                    if((int)$row['count'] > 0) 
-                    {
-                        echo 'You have already entered this competition!\n';
-                        echo $row['Email'];
-                        echo $row['IP'];
-                    }
-                    else {
-                        echo 'success';
                     }
                     
                    }
@@ -431,10 +418,7 @@ $result = mysqli_query($conexao, $query);
                 <label for="quantidade">Descrição</label>
                 <input type="text" class="form-control mr-2" name="descricao" placeholder="descricao" value="<?php echo $res_1['descricao']; ?>" required>
               </div>
-              <div class="form-group">
-                <label for="quantidade">Materiais</label>
-                <input type="text" class="form-control mr-2" name="materiais" placeholder="materiais" value="<?php echo $res_1['materiais']; ?>" required>
-              </div>
+              
               <div class="form-group">
                 <label for="quantidade">Tempo Garantia</label>
                 <input type="text" class="form-control mr-2" name="tempo_garantia" placeholder="tempo_garantia" value="<?php echo $res_1['tempo_garantia']; ?>" required>
@@ -445,7 +429,7 @@ $result = mysqli_query($conexao, $query);
               </div>
               <div class="form-group">
                 <label for="quantidade">Validade Orcamento</label>
-                <input type="text" class="form-control mr-2" name="validade_orcamento" placeholder="validade_orcamento" value="<?php echo $res_1['validade_orcamento']; ?>" required>
+                <input type="text" class="form-control mr-2" name="validade_orcamento" id="validade_orcamento" placeholder="validade_orcamento" value="<?php echo $res_1['validade_orcamento']; ?>" required>
               </div>
               <div class="form-group">
                 <label for="quantidade">Status</label>
@@ -476,24 +460,23 @@ $result = mysqli_query($conexao, $query);
 <!--Comando para editar os dados UPDATE -->
 <?php
 if(isset($_POST['buttonEditar'])){
+
   $tecnico_responsavel = $_POST['tecnico_responsavel'];
-  $cliente = $_POST['cliente'];
+  $cliente = $_POST['nome'];
   $cliente_representante_projeto = $_POST['cliente_representante_projeto'];
   $quantidade_aparelhos = $_POST['quantidade_aparelhos'];
   $servico_oferecido = $_POST['servico_oferecido'];
   $descricao = $_POST['descricao'];
-  $materiais = $_POST['materiais'];
   $tempo_garantia = $_POST['tempo_garantia'];
   $sub_total = $_POST['sub_total'];
   $validade_orcamento = $_POST['validade_orcamento'];
-  $status = $_POST['status'];
   $valor_total = $_POST['valor_total'];
   
 
 
 
 
-$query_editar = "UPDATE orcamento set tecnico_responsavel = '$tecnico_responsavel', cliente = '$cliente', cliente_representante_projeto = '$cliente_representante_projeto', quantidade_aparelhos = '$quantidade_aparelhos', servico_oferecido = '$servico_oferecido',descricao = '$descricao', materiais = '$materiais', tempo_garantia = '$tempo_garantia',sub_total = '$sub_total',validade_orcamento = '$validade_orcamento',status = '$status',valor_total = '$valor_total', where id_orcamento = '$id_orcamento' ";
+$query_editar = "UPDATE orcamento set tecnico_responsavel = '$tecnico_responsavel', cliente = '$cliente', cliente_representante_projeto = '$cliente_representante_projeto', quantidade_aparelhos = '$quantidade_aparelhos', servico_oferecido = '$servico_oferecido',descricao = '$descricao', tempo_garantia = '$tempo_garantia',sub_total = '$sub_total',validade_orcamento = '$validade_orcamento',valor_total = '$valor_total', where id_orcamento = '$id_orcamento' ";
 
 $result_editar = mysqli_query($conexao, $query_editar);
 
@@ -516,7 +499,11 @@ if($result_editar == ''){
 <script type="text/javascript">
     $(document).ready(function(){
       $('#telefone').mask('(00) 00000-0000');
+      $('#validade_orcamento').mask('dd.mm.yyyy');
+
       });
+
+
 </script>
 
 

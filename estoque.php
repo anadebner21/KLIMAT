@@ -88,7 +88,7 @@ include('conexao.php');
               <div class="col-md-12">
                 <div class="card text-white bg-dark mb-3">
                   <div class="card-header">
-                  <h2 class="text-start text-secondary font-weight-bold ">ORÇAMENTO</h2>
+                  <h2 class="text-start text-secondary font-weight-bold ">ESTOQUE</h2>
                     <h6 class="card text-right"></h6>
 
                   <div class="col-xs-4">
