@@ -22,7 +22,20 @@ include('conexao.php');
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-
+<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- Material Kit CSS -->
+  <link href="assets/css/material-kit.css?v=3.0.0" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 
 
 </head>
@@ -30,18 +43,57 @@ include('conexao.php');
 
 <body>
 
-
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="painel_funcionario.php"><big><big><i class="fa fa-arrow-left"></i></big></big></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent">
+    <div class="container">
+      <a class="navbar-brand  text-dark " rel="tooltip"  data-placement="bottom" target="_blank">
+        KLIMAT - GERENCIAMENTO 
+      </a>
+      <ul class="navbar-nav">
+             
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+           
+      
     <ul class="navbar-nav mr-auto">
       
     </ul>
+    
+
+    
+         </div>
+       
+      </ul>        
+      </div>
+    </div>
+</nav>
+<div class="page" style="background-image: url('https://www.adagil.com.br/assets/site/img/aplicacao2.png')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="text-center">
+            <h1 class="text-black"></h1>
+            <h3 class="text-secondary">..........</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="content">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card text-white bg-dark mb-3">
+                  <div class="card-header">
+                    <h2 class="text-start text-secondary font-weight-bold ">ORÇAMENTOS</h2>
+                    <h6 class="card text-right"></h6>
+
+                    <div class="col-xs-4">
+                    <div class="col-xs-4">
+                    <div class="row">
+                    
+  <div class="col-md-3 col-xs-4">
+    <div class="form-group">
     <form class="form-inline my-2 my-lg-0">
 
       <select class="form-control mr-2" id="category" name="status">
@@ -55,40 +107,41 @@ include('conexao.php');
       <input name="txtpesquisar" class="form-control mr-sm-2" type="date" placeholder="Pesquisar" aria-label="Pesquisar">
       <button name="buttonPesquisar" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
     </form>
+    </div>
   </div>
-</nav>
+  <div class="col-md-6 col-xs-4">
 
+    <div class="form-group">
+    <form class="form-inline my-2 my-lg-1">
+      <input name="pesquisar" class="form-control mr-sm-2" type="search" placeholder="Buscar pelo Nome" aria-label="Pesquisar" style="background-color: 	#C0C0C0;">
+      <button name="buttonPesquisar" class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    </div>
+  </div>
+  
+  
 
+  <div class="col-md-3 col-xs-4">
+    <div class="form-group">
+    <h6 class="text-end"><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalExemplo">Inserir Novo</h6>
 
-
-
-<div class="container">
-
+    
+    </div>
+  </div>
+</div>
+</div>
 
     
 
-      <br>
+          
 
 
-         <div class="row">
-           <div class="col-sm-12">
-            <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#modalExemplo">Inserir Novo </button>
-
-           </div>
 
           
-        </div>
-
-
-          <div class="content">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4 class="card-title"> Orçamentos Abertos</h4>
-                  </div>
+      
+    
                   <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-secondary">
 
                       <!--LISTAR TODOS OS ORÇAMENTOS -->
 
@@ -99,19 +152,19 @@ include('conexao.php');
                           $data = $_GET['txtpesquisar'] . '%';
                           $status = $_GET['status'];
 
-                           $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) where o.data = '$data' and o.status = '$status' order by o.id_orcamento asc";
+                           $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.data = '$data' and o.status = '$status' order by o.id_orcamento asc";
 
                          }else if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar'] == '' and $_GET['status'] != 'Todos'){
                          $status= $_GET['status'];
-                         $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) where o.data = curDate() and o.status = '$status' order by o.id_orcamento asc"; 
+                         $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.data = curDate() and o.status = '$status' order by o.id_orcamento asc"; 
 
                           }else if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar']!= '' and $_GET['status'] == 'Todos'){
                          $data = $_GET['txtpesquisar'] . '%';
-                         $query = "select o.id_orcamento, o.tecnico,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) where o.data = '$data' order by o.id_orcamento asc"; 
+                         $query = "select o.id_orcamento, o.tecnico,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.data = '$data' order by o.id_orcamento asc"; 
                         
 
                         }else{
-                         $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) where o.data = curDate()  order by o.id_orcamento asc"; 
+                         $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.data = curDate()  order by o.id_orcamento asc"; 
                         }
 
                         
@@ -131,7 +184,7 @@ include('conexao.php');
                           
 
                       <table class="table">
-                        <thead class=" text-primary">
+                        <thead>
                           
                           <th>
                             Cliente
@@ -162,7 +215,7 @@ include('conexao.php');
                           while($res_1 = mysqli_fetch_array($result)){
                             $cliente = $res_1["cli_nome"];
                             $tecnico = $res_1["tecnico"];
-                            $servico_oferecido= $res_1["servico_oferecido"];
+                            $servico_oferecido= $res_1["ser_descri"];
                             $valor_total = $res_1["valor_total"];
                             $status = $res_1["status"];
                            
@@ -181,9 +234,9 @@ include('conexao.php');
                              
                            
                              <td>
-                             <a class="btn btn-info" href="orcamento.php?func=edita&id=<?php echo $id_orcamento; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                             <a class="btn btn-outline-warning" href="orcamento.php?func=edita&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-pencil-square-o"></i></a>
 
-                             <a class="btn btn-danger" href="orcamento.php?func=deleta&id=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
+                             <a class="btn btn-outline-danger" href="orcamento.php?func=deleta&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
 
                              </td>
                             </tr>
@@ -212,10 +265,10 @@ include('conexao.php');
  <div id="modalExemplo" class="modal fade" role="dialog">
         <div class="modal-dialog">
          <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content" style="background-color:#708090;">
             <div class="modal-header">
               
-              <h4 class="modal-title">Novo Orçamento</h4>
+              <h2 class="text-center text-dark font-weight-bold">Novo Orçamento</h2>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -254,10 +307,26 @@ include('conexao.php');
                 <input type="number" class="form-control mr-2" name="quantidade_aparelhos" placeholder="Qtd Aparelhos" required>
               </div>
 
-               <div class="form-group">
-                <label for="quantidade">Servico a ser prestado</label>
-                <input type="text" class="form-control mr-2" name="servico_oferecido" placeholder="Serviço a ser Prestado" required>
+              <div class="form-group">
+               <label for="fornecedor">Serviço Oferecido</label>
+                
+                  <select class="form-control mr-2" id="category" name="servico_oferecido">
+                  <?php
+                  
+                  $query = "SELECT * FROM servico_oferecido ORDER BY descricao asc";
+                  $result = mysqli_query($conexao, $query);
+
+                  if($result){
+                    while($res_1 = mysqli_fetch_array($result)){
+                         ?>                                             
+                    <option value="<?php echo $res_1['id_servico']; ?>"><?php echo $res_1['descricao']; ?></option> 
+                         <?php      
+                       }
+                   }
+                  ?>
+                  </select>
               </div>
+             
 
               <div class="form-group">
                 <label for="quantidade">Descrição Serviço</label>
@@ -314,10 +383,9 @@ if(isset($_POST['button'])){
   $status = $_POST['status'];
   $valor_total = $_POST['valor_total'];
 
-  //VERIFICAR SE O CPF JÁ ESTÁ CADASTRADO
   
 
-$query = "INSERT into orcamento (data, tecnico, cliente, cliente_representante_projeto, quantidade_aparelhos, servico_oferecido, descricao, tempo_garantia, sub_total,status, valor_total) VALUES (curDate(), '$tecnico', '$cliente', '$cliente_representante_projeto	', '$quantidade_aparelhos', '$servico_oferecido','descricao','tempo_garantia','0', 'Aberto', '0' )";
+$query = "INSERT into orcamento (data, tecnico, cliente, cliente_representante_projeto, quantidade_aparelhos, servico_oferecido, descricao, tempo_garantia, sub_total,status, valor_total) VALUES (curDate(), '$tecnico', '$cliente', '$cliente_representante_projeto	', '$quantidade_aparelhos', '$servico_oferecido','$descricao','$tempo_garantia','$sub_total', 'Aberto', '$valor_total' )";
 
 $result = mysqli_query($conexao, $query);
 
@@ -360,7 +428,7 @@ if(@$_GET['func'] == 'edita'){
  <div id="modalEditar" class="modal fade" role="dialog">
         <div class="modal-dialog">
          <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content" style="background-color:#708090;">
             <div class="modal-header">
               
               <h4 class="modal-title">Editar Orçamento</h4>
@@ -370,13 +438,13 @@ if(@$_GET['func'] == 'edita'){
               <form method="POST" action="">
               <div class="form-group">
                 <label for="quantidade">Técnico</label>
-                <input type="text" class="form-control mr-2" name="tecnico" placeholder="tecnico_responsavel" value="<?php echo $res_1['tecnico_responsavel']; ?>" required>
+                <input type="text" class="form-control mr-2" name="tecnico" placeholder="tecnico" value="<?php echo $res_1['tecnico']; ?>" required>
               </div>
              
               <div class="form-group">
                <label for="fornecedor">Cliente</label>
                 
-                  <select class="form-control mr-2" id="category" name="cliente">
+                  <select class="form-control mr-2" id="category" name="cliente" value="<?php echo $res_1['cliente']; ?> " required>
                   <?php
                   
                   $query = "SELECT * FROM clientes ORDER BY nome asc";
@@ -397,17 +465,40 @@ if(@$_GET['func'] == 'edita'){
                 <label for="quantidade">Cliente representante_projeto</label>
                 <input type="text" class="form-control mr-2" name="cliente_representante_projeto" value="<?php echo $res_1['cliente_representante_projeto']; ?>" placeholder="Cliente Repre Projeto" required>
               </div>
-              
-               <div class="form-group">
+              <div class="form-group">
                 <label for="quantidade">Quantidade Aparelhos</label>
-                <input type="text" class="form-control mr-2" name="quantidade_aparelhos" placeholder="aparelhos" value="<?php echo $res_1['quantidade_aparelhos']; ?>" required>
+                <input type="number" class="form-control mr-2" name="quantidade_aparelhos" value="<?php echo $res_1['quantidade_aparelhos']; ?>"  placeholder="Qtd Aparelhos" required>
               </div>
 
-               <div class="form-group">
-                <label for="quantidade">Serviço A Ser Prestado</label>
-                <input type="text" class="form-control mr-2" name="servico_oferecido" value="<?php echo $res_1['servico_oferecido']; ?>" placeholder="servico_oferecido" required>
-              </div>
+              <div class="form-group">
+               <label for="fornecedor">Serviço Oferecido</label>
+                
+                  <select class="form-control mr-2" id="category" name="servico_oferecido" value="<?php echo $res_1['servico_oferecido']; ?> " required>
+                  <?php
+                  
+                  $query = "SELECT * FROM servico_oferecido ORDER BY descricao asc";
+                  $result = mysqli_query($conexao, $query);
 
+                  if($result){
+                    while($res_2 = mysqli_fetch_array($result)){
+                      ?>                                             
+                 <option value="<?php echo $res_2['id_servico']; ?>"><?php echo $res_2['descricao']; ?></option> 
+                      <?php      
+                    }
+                    if((int)$row['count'] > 0) 
+                    {
+                        echo 'You have already entered this competition!\n';
+                        echo $row['Email'];
+                        echo $row['IP'];
+                    }
+                    else {
+                        echo 'success';
+                    }
+                    
+                   }
+                  ?>
+                  </select>
+              </div>
               <div class="form-group">
                 <label for="quantidade">Descrição</label>
                 <input type="text" class="form-control mr-2" name="descricao" placeholder="descricao" value="<?php echo $res_1['descricao']; ?>" required>
