@@ -99,19 +99,19 @@ include('conexao.php');
                           $data_orcamento = $_GET['pesquisar'] . '%';
                           $status = $_GET['status'];
 
-                           $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente, o.servico_oferecido, o.status, o.valor_total, c.nome as cliente from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = '$data_orcamento' and o.status = '$status' order by o.id_orcamento asc";
+                           $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.status, o.valor_total, c.nome as cli_nome from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = '$data_orcamento' and o.status = '$status' order by o.id_orcamento asc";
 
                          }else if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar'] == '' and $_GET['status'] != 'Todos'){
                           $status = $_GET['status'];
-                          $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cliente from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = curDate() and o.status = '$status' order by o.id_orcamento asc"; 
+                          $query = "select o.id_orcamento, o.tecnico ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_nome from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = curDate() and o.status = '$status' order by o.id_orcamento asc"; 
 
                         }else if(isset($_GET['buttonPesquisar']) and $_GET['pesquisar']!= '' and $_GET['status'] == 'Todos'){
                             $data_orcamento = $_GET['pesquisar'] . '%';
-                            $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cliente from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento= '$data_orcamento' order by o.id_orcamento asc"; 
+                            $query = "select o.id_orcamento, o.tecnico ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_nome from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento= '$data_orcamento' order by o.id_orcamento asc"; 
                       
 
                         }else{
-                            $query = "select o.id_orcamento, o.tecnico_responsavel ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cliente from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = curDate()  order by o.id_orcamento asc"; 
+                            $query = "select o.id_orcamento, o.tecnico ,o.cliente , o.servico_oferecido, o.status, o.valor_total, c.nome as cli_nome from orcamento as o INNER JOIN clientes as c on o.cliente = c.id where o.data_orcamento = curDate()  order by o.id_orcamento asc"; 
                         }
 
                         
@@ -158,7 +158,7 @@ include('conexao.php');
                           while($res_1 = mysqli_fetch_array($result)){
   
                             $tecnico_responsavel = $res_1["tecnico_responsavel"];
-                            $cliente = $res_1["cliente"];
+                            $cliente = $res_1["cli_nome"];
                             $servico_oferecido = $res_1["servico_oferecido"];
                             $valor_total = $res_1["valor_total"];
                             $status = $res_1["status"];
@@ -323,7 +323,7 @@ if(isset($_POST['button'])){
 
 
 
-$query = "INSERT INTO orcamento (data_orcamento, tecnico_responsavel, cliente, cliente_representante_projeto, quantidade_aparelhos, servico_oferecido, descricao, tempo_garantia, sub_total, validade_orcamento, status, valor_total) VALUES (curDate(), '$tecnico_responsavel', '$cliente', '$cliente_representante_projeto', '$quantidade_aparelhos', '$servico_oferecido', '$descricao','$tempo_garantia', '$sub_total', date_add(), 'Aberto','$valor_total' )";
+$query = "INSERT into orcamento (data_orcamento, tecnico_responsavel, cliente, cliente_representante_projeto, quantidade_aparelhos, servico_oferecido, descricao, tempo_garantia, sub_total, validade_orcamento, status, valor_total) VALUES (curDate(), '$tecnico_responsavel', '$cliente', '$cliente_representante_projeto', '$quantidade_aparelhos', '$servico_oferecido', '$descricao','$tempo_garantia', '$sub_total', date_add(), 'Aberto','$valor_total' )";
 
 $result = mysqli_query($conexao, $query);
 
@@ -382,7 +382,7 @@ $result = mysqli_query($conexao, $query);
               <div class="form-group">
                <label for="fornecedor">Cliente</label>
                 
-                  <select class="form-control mr-2" id="category" name="nome">
+                  <select class="form-control mr-2" id="category" name="cliente">
                   <?php
                   
                   $query = "SELECT * FROM clientes ORDER BY nome asc";
@@ -432,10 +432,6 @@ $result = mysqli_query($conexao, $query);
                 <input type="text" class="form-control mr-2" name="validade_orcamento" id="validade_orcamento" placeholder="validade_orcamento" value="<?php echo $res_1['validade_orcamento']; ?>" required>
               </div>
               <div class="form-group">
-                <label for="quantidade">Status</label>
-                <input type="text" class="form-control mr-2" name="status" placeholder="status" value="<?php echo $res_1['status']; ?>" required>
-              </div>
-              <div class="form-group">
                 <label for="quantidade">Valor Total</label>
                 <input type="text" class="form-control mr-2" name="valor_total" placeholder="valor_total" value="<?php echo $res_1['valor_total']; ?>" required>
               </div>
@@ -462,7 +458,7 @@ $result = mysqli_query($conexao, $query);
 if(isset($_POST['buttonEditar'])){
 
   $tecnico_responsavel = $_POST['tecnico_responsavel'];
-  $cliente = $_POST['nome'];
+  $cliente = $_POST['cliente'];
   $cliente_representante_projeto = $_POST['cliente_representante_projeto'];
   $quantidade_aparelhos = $_POST['quantidade_aparelhos'];
   $servico_oferecido = $_POST['servico_oferecido'];
@@ -499,7 +495,7 @@ if($result_editar == ''){
 <script type="text/javascript">
     $(document).ready(function(){
       $('#telefone').mask('(00) 00000-0000');
-      $('#validade_orcamento').mask('dd.mm.yyyy');
+      $('#validade_orcamento').mask('yyyy.mm.dd');
 
       });
 
