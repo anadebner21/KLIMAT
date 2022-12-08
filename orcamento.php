@@ -92,11 +92,11 @@ include('conexao.php');
                     <div class="col-xs-4">
                     <div class="row">
                     
-  <div class="col-md-3 col-xs-4">
+  <div class="col-md-4 col-xs-4">
     <div class="form-group">
     <form class="form-inline my-2 my-lg-0">
 
-      <select class="form-control mr-2" id="category" name="status">
+      <select class="form-control mr-2" id="category" name="status" style="background-color: 	#C0C0C0;">
          <option value="Todos">Todos</option> 
           <option value="Aberto">Aberto</option> 
            <option value="Aguardando">Aguardando</option> 
@@ -104,24 +104,17 @@ include('conexao.php');
              <option value="Cancelado">Cancelado</option> 
       </select>
 
-      <input name="txtpesquisar" class="form-control mr-sm-2" type="date" placeholder="Pesquisar" aria-label="Pesquisar">
-      <button name="buttonPesquisar" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-    </div>
-  </div>
-  <div class="col-md-6 col-xs-4">
-
-    <div class="form-group">
-    <form class="form-inline my-2 my-lg-1">
-      <input name="pesquisar" class="form-control mr-sm-2" type="search" placeholder="Buscar pelo Nome" aria-label="Pesquisar" style="background-color: 	#C0C0C0;">
+      <input name="txtpesquisar" class="form-control mr-sm-2" type="date" placeholder="Pesquisar" aria-label="Pesquisar" style="background-color: 	#C0C0C0;">
       <button name="buttonPesquisar" class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
     </form>
     </div>
   </div>
   
+  </div>
+  
   
 
-  <div class="col-md-3 col-xs-4">
+  <div class="col-md-12 col-xs-4">
     <div class="form-group">
     <h6 class="text-end"><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalExemplo">Inserir Novo</h6>
 
