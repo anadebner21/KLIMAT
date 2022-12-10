@@ -135,7 +135,7 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="words">
-                      <h3><p class="card-category" class="text-muted"><a href="abrir_orcamento.php"  class="text-light">ORÇAMENTO</a></p></h3>
+                      <h3><p class="card-category" class="text-muted"><a href="orcamento.php"  class="text-light">ORÇAMENTO</a></p></h3>
                       <p class="card-title">Veja seus orçamentos
                         <p>
                     </div>

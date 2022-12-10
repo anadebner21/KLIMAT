@@ -152,12 +152,12 @@ include('conexao.php');
                          $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.data = curDate() and o.status = '$status' order by o.id_orcamento asc"; 
 
                           }else if(isset($_GET['buttonPesquisar']) and $_GET['txtpesquisar']!= '' and $_GET['status'] == 'Todos'){
-                         $data = $_GET['txtpesquisar'] . '%';
-                         $query = "select o.id_orcamento, o.tecnico,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.data = '$data' order by o.id_orcamento asc"; 
+                          $data = $_GET['txtpesquisar'] . '%';
+                          $query = "select o.id_orcamento, o.tecnico,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.data = '$data' order by o.id_orcamento asc"; 
                         
 
                         }else{
-                         $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.data = curDate()  order by o.id_orcamento asc"; 
+                         $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.cliente order by o.id_orcamento asc"; 
                         }
 
                         
