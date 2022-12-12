@@ -45,7 +45,7 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
   <link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body style="background-color:	#2F4F4F;">
+<body style="background-color:	#3b3b3b;">
 
 <!-- Navbar Transparent -->
   <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent" >
@@ -54,7 +54,7 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
     
           <a class="navbar-center text-dark " >
             
-              KLIMAT-GERENCIAMENTO  
+             
           </a>
           
       <ul class="navbar-nav">
@@ -80,8 +80,8 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
   <!-- End Navbar -->
 
 
-  <div class="page-header min-vh-80" style="background-image: url('https://i.pinimg.com/564x/8b/52/3f/8b523f7bf1cd8846bdf47f76b6326512.jpg')">
-    <span class="mask bg-gradient-dark opacity-6"></span>
+  <div class="page-header min-vh-80" style="background-image: url('img/painel5.png') ;" >
+<link img src="img/painel5.png">
     <div class="container" >
       <div class="row">
         <div class="col-md-8 mx-auto">
