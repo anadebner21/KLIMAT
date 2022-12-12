@@ -4,6 +4,10 @@ include('conexao.php');
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="apple-touch-icon" sizes="76x76" href="img/Klimat_Logo__1_-removebg-preview.png">
+  <link rel="icon" type="image/png" href="img/Klimat_Logo__1_-removebg-preview.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+ 
   <title>ESTOQUE</title>
 
 

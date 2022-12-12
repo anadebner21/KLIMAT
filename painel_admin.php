@@ -173,12 +173,12 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
   <footer class="footer pt-5 mt-5">
     <div class="container">
       <div class=" row">
-        <div class="col-md-3 mb-4 ms-auto">
+        <div class="col-md-15 mb-6 ms-auto">
         
          
-        <div class="col-12">
+        <div class="col-20">
           <div class="text-center">
-            <p class="text-dark my-4 text-sm font-weight-normal">
+            <p class="text-ligth my-4 text-sm font-weight-normal">
               All rights reserved. Copyright © <script>
                 document.write(new Date().getFullYear())
               </script> Ana Debner 
