@@ -1,32 +1,36 @@
-<?php 
+<?php
 
-//Carregar o composer
-require './vendor/autoload.php';
+require_once '../dompdf/autoload.php';
 
-//CARREGAR DOMPDF
+// referenciando o namespace do dompdf
+
 use Dompdf\Dompdf;
 
 $id_orcamento = $_GET['id_orcamento'];
 
 //ALIMENTAR OS DADOS NO RELATÓRIO
+//lendo o arquivo HTML correspondente
 $html = utf8_encode(file_get_contents("http://localhost/KLIMAT/rel/rel_orcamentos.php?id_orcamento=".$id_orcamento));
+// instanciando o dompdf
 
-//INICIALIZAR A CLASSE DO DOMPDF
-$dompdf = new DOMPDF();
+$dompdf = new Dompdf();
 
-//Definir o tamanho do papel e orientação da página
-$dompdf->setPaper('A4', 'portrait');
 
-//CARREGAR O CONTEÚDO HTML
+//inserindo o HTML que queremos converter
+
 $dompdf->loadHtml(utf8_decode($html));
 
-//RENDERIZAR O PDF
+// Definindo o papel e a orientação
+
+$dompdf->setPaper('A4', 'landscape');
+
+// Renderizando o HTML como PDF
+
 $dompdf->render();
 
-//NOMEAR O PDF GERADO
-$dompdf->stream(
-'orcamento.pdf',
-array("Attachment" => false)
-);
+// Enviando o PDF para o browser
 
- 
+$dompdf->stream('relatorioOrcamento.pdf',
+array("Attachment" => false));
+
+?>

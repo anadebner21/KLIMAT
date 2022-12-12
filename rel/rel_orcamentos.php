@@ -3,7 +3,7 @@
 $id_orcamento = $_GET['id_orcamento'];
 
 include('../conexao.php');
-$query = "select o.id_orcamento, o.data, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, c.cpf_cnpj, c.endereco, c.email, c.telefone, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.id_orcamento = '$id_orcamento' "; 
+$query = "select o.id_orcamento, o.data, o.tecnico ,o.cliente, cliente_representante_projeto, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, c.cpf_cnpj, c.endereco, c.email, c.telefone, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.id_orcamento = '$id_orcamento' "; 
 
 $result = mysqli_query($conexao, $query);
 
@@ -124,7 +124,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
 				 <p style="font-size:12px">  CPF: <?php echo $res_1['cpf_cnpj']; ?> </p>
 				</div>
 				<div class="col-sm-3">	
-				 <p style="font-size:12px">  Cliente Responsável Pelo Projeto: <?php echo $res_1['cliente_responsavel_projeto']; ?> </p>
+				 <p style="font-size:12px">  Cliente Responsável Pelo Projeto: <?php echo $res_1['o.cliente_representante_projeto']; ?> </p>
 				</div>
 				
 				
@@ -140,7 +140,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
 			</div>
 			<div class="row">
 				<div class="col-sm-3">	
-				 <p style="font-size:12px">  Quantidade de Aparelhos: <?php echo $res_1['quantidade_aparelhos']; ?> </p>
+				 <p style="font-size:12px">  Quantidade de Aparelhos: <?php echo $res_1['o.quantidade_aparelhos']; ?> </p>
 				</div>
 				<div class="col-sm-3">	
 				 <p style="font-size:12px">  Serviço Requerido: <?php echo $res_1['ser_descri']; ?> </p>
