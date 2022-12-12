@@ -59,7 +59,7 @@ $valor_total = $res_1['valor_total'];
 }
 
 .areaTotal{
-	border : 0.5px solid #bcbcbc;
+	border : 1.0px solid #bcbcbc;
 	padding: 15px;
 	border-radius: 5px;
 	margin-right:25px;
@@ -96,7 +96,7 @@ $valor_total = $res_1['valor_total'];
 		
 			<div class="row">
 				<div class="col-sm-8">	
-				  <big> Orçamento Nº <?php echo $id_orcamento ?>  </big>
+				  <big> Orçamento Nº <?php echo $id_orcamento ?> </big>
 
 
 				</div>

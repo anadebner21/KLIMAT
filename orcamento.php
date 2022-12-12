@@ -163,7 +163,7 @@ include('conexao.php');
                         
 
                         }else{
-                         $query = "select o.id_orcamento, o.tecnico ,o.cliente, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.cliente order by o.id_orcamento asc"; 
+                         $query = "select o.id_orcamento, o.tecnico ,o.cliente,o.cliente_representante_projeto, o.quantidade_aparelhos, o.descricao, o.tempo_garantia, o.sub_total, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.cliente order by o.id_orcamento asc"; 
                         }
 
                         
@@ -238,6 +238,8 @@ include('conexao.php');
                              <a class="btn btn-outline-warning" href="orcamento.php?func=edita&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-pencil-square-o"></i></a>
 
                              <a class="btn btn-outline-danger" href="orcamento.php?func=deleta&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
+                             
+                             <a class="btn btn-outline-sucess" href="orcamento.php?func=visualiza&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
 
                              </td>
                             </tr>
@@ -275,11 +277,11 @@ include('conexao.php');
             <div class="modal-body">
               <form method="POST" action="">
               <div class="form-group">
-                <label for="fornecedor">Técnico Responsável</label>
+                <label class="text-dark" for="fornecedor" >Técnico Responsável</label>
                  <input type="text" class="form-control mr-2" name="tecnico" placeholder="Técnico" required>
               </div>
               <div class="form-group">
-               <label for="fornecedor">Cliente</label>
+               <label class="text-dark" for="fornecedor">Cliente</label>
                 
                   <select class="form-control mr-2" id="category" name="cliente">
                   <?php
@@ -299,17 +301,17 @@ include('conexao.php');
               </div>
              
               <div class="form-group">
-                <label for="quantidade">Cliente Responsável Pelo Tratamento do Serviço</label>
+                <label class="text-dark" for="quantidade">Cliente Responsável Pelo Tratamento do Serviço</label>
                 <input type="text" class="form-control mr-2" name="cliente_representante_projeto" placeholder="Cliente Representante" required>
               </div>
               
                <div class="form-group">
-                <label for="quantidade">Quantidade Aparelhos</label>
+                <label class="text-dark" for="quantidade">Quantidade Aparelhos</label>
                 <input type="number" class="form-control mr-2" name="quantidade_aparelhos" placeholder="Qtd Aparelhos" required>
               </div>
 
               <div class="form-group">
-               <label for="fornecedor">Serviço Oferecido</label>
+               <label class="text-dark" for="fornecedor">Serviço Oferecido</label>
                 
                   <select class="form-control mr-2" id="category" name="servico_oferecido">
                   <?php
@@ -330,20 +332,20 @@ include('conexao.php');
              
 
               <div class="form-group">
-                <label for="quantidade">Descrição Serviço</label>
+                <label class="text-dark" for="quantidade">Descrição Serviço</label>
                 <input type="text" class="form-control mr-2" name="descricao" placeholder="Descrição" required>
               </div>
               <div class="form-group">
-                <label for="quantidade">Tempo Garantia</label>
+                <label class="text-dark" for="quantidade">Tempo Garantia</label>
                 <input type="text" class="form-control mr-2" name="tempo_garantia" placeholder="Garantia" required>
               </div>
               <div class="form-group">
-                <label for="quantidade">Sub-Total</label>
+                <label class="text-dark" for="quantidade">Sub-Total</label>
                 <input type="text" class="form-control mr-2" name="sub_total" placeholder="Sub-total" required>
               </div>
               
               <div class="form-group">
-                <label for="quantidade">valor Total</label>
+                <label class="text-dark" for="quantidade">valor Total</label>
                 <input type="text" class="form-control mr-2" name="valor_total" placeholder="Valor ttl" required>
               </div>
              
@@ -410,7 +412,76 @@ if(@$_GET['func'] == 'deleta'){
   echo "<script language='javascript'> window.location='orcamento.php'; </script>";
 }
 ?>
+<!--Visualizar-->
 
+<?php
+if(@$_GET['func'] == 'visualiza'){  
+  $id_orcamento = $_GET['id_orcamento'];
+  
+$query_visualizar = "select o.id_orcamento, o.data, o.tecnico ,o.cliente, o.cliente_representante_projeto, o.sub_total, o.quantidade_aparelhos, o.servico_oferecido, o.tempo_garantia, o.descricao, o.valor_total, o.status, c.nome as cli_nome, c.cpf_cnpj, c.endereco, c.email, c.telefone, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.id_orcamento = '$id_orcamento' "; 
+
+$result_visualizar = mysqli_query($conexao, $query_visualizar);
+
+
+ while($res_2 = mysqli_fetch_array($result_visualizar)){
+
+$data2 = implode('/', array_reverse(explode('-', $res_2['data'])));
+$tecnico = $res_2['tecnico'];
+  $cliente = $res_2['cli_nome'];
+  $cliente_representante_projeto = $res_2['cliente_representante_projeto'];
+  $quantidade_aparelhos = $res_2['quantidade_aparelhos']; 
+  $servico_oferecido = $res_2['ser_descri']; 
+  $descricao = $res_2['descricao'];
+  $tempo_garantia = $res_2['tempo_garantia'];
+  $sub_total = $res_2['sub_total'];
+  $valor_total = $res_2['valor_total'];
+}
+
+
+?>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalVisualizar"  role="dialog"  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="background-color:#708090;">
+      <div class="modal-header">
+      <h2 class="text-center text-dark font-weight-bold">Detalhes Orçamento</h2>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p class="font-weight-bold" style="font-size:20px"> <b> ID Orçamento: </b><?php echo $id_orcamento; ?> </p>
+      <p style="font-size:12px">  <b><h6>Data Orçamento: </h6></b><?php echo $data2; ?> </p>
+      <p style="font-size:12px">  <h6><b>Técnico:</b></h6> <?php echo $tecnico; ?> </p>
+      <p style="font-size:12px">  <h6><b>Cliente: </b></h6><?php echo $cliente; ?> </p>
+      <p style="font-size:12px">  <h6><b>Cliente Mediador: </b></h6><?php echo $cliente_representante_projeto; ?> </p>
+      <p style="font-size:12px">  <h6><b>Serviço Oferecido:</b></h6> <?php echo $servico_oferecido; ?> </p>
+      <p style="font-size:12px">  <h6><b>Quantidade Aparelhos:</b></h6> <?php echo $quantidade_aparelhos; ?> </p>
+      <p style="font-size:12px">  <h6><b>Descrição:</b></h6> <?php echo $descricao; ?> </p>
+      <p style="font-size:12px">  <h6><b>Tempo de Garantia do Serviço a ser executado: </b></h6><?php echo $tempo_garantia; ?> </p>
+      <p style="font-size:12px">  <h6><b>Sub-Total:</b></h6> <?php echo $sub_total; ?> </p>
+      <p style="font-size:12px">  <h6><b>Total:</b></h6> <?php echo $valor_total; ?> </p>
+              
+
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script> $("#modalVisualizar").modal("show"); </script> 
+
+
+  <?php }  ?>
 
 
 <!--EDITAR -->
@@ -438,22 +509,22 @@ if(@$_GET['func'] == 'edita'){
             <div class="modal-body">
               <form method="POST" action="">
               <div class="form-group">
-                <label for="quantidade">Técnico</label>
+                <label class="text-dark" for="quantidade">Técnico</label>
                 <input type="text" class="form-control mr-2" name="tecnico" placeholder="tecnico" value="<?php echo $res_1['tecnico']; ?>" required>
               </div>
              
         
               <div class="form-group">
-                <label for="quantidade">Cliente representante_projeto</label>
+                <label class="text-dark" for="quantidade">Cliente representante_projeto</label>
                 <input type="text" class="form-control mr-2" name="cliente_representante_projeto" value="<?php echo $res_1['cliente_representante_projeto']; ?>" placeholder="Cliente Repre Projeto" required>
               </div>
               <div class="form-group">
-                <label for="quantidade">Quantidade Aparelhos</label>
+                <label class="text-dark" for="quantidade">Quantidade Aparelhos</label>
                 <input type="number" class="form-control mr-2" name="quantidade_aparelhos" value="<?php echo $res_1['quantidade_aparelhos']; ?>"  placeholder="Qtd Aparelhos" required>
               </div>
 
               <div class="form-group">
-               <label for="fornecedor">Serviço Oferecido</label>
+               <label class="text-dark"for="fornecedor">Serviço Oferecido</label>
                 
                   <select class="form-control mr-2" id="category" name="servico_oferecido" value="<?php echo $res_1['servico_oferecido']; ?> " required>
                   <?php
@@ -482,20 +553,20 @@ if(@$_GET['func'] == 'edita'){
                   </select>
               </div>
               <div class="form-group">
-                <label for="quantidade">Descrição</label>
+                <label class="text-dark"for="quantidade">Descrição</label>
                 <input type="text" class="form-control mr-2" name="descricao" placeholder="descricao" value="<?php echo $res_1['descricao']; ?>" required>
               </div>
               
               <div class="form-group">
-                <label for="quantidade">Tempo Garantia</label>
+                <label class="text-dark" for="quantidade">Tempo Garantia</label>
                 <input type="text" class="form-control mr-2" name="tempo_garantia" placeholder="tempo_garantia" value="<?php echo $res_1['tempo_garantia']; ?>" required>
               </div>
               <div class="form-group">
-                <label for="quantidade">Sub Total</label>
+                <label class="text-dark" for="quantidade">Sub Total</label>
                 <input type="text" class="form-control mr-2" name="sub_total" placeholder="sub_total" value="<?php echo $res_1['sub_total']; ?>" required>
               </div>
               <div class="form-group">
-                <label for="quantidade">Valor Total</label>
+                <label class="text-dark" for="quantidade">Valor Total</label>
                 <input type="text" class="form-control mr-2" name="valor_total" placeholder="valor_total" value="<?php echo $res_1['valor_total']; ?>" required>
               </div>
              
@@ -547,7 +618,7 @@ if($result_editar == ''){
 ?>
 
 
-<?php } }  ?>
+<?php } }   ?>
 
 
 <!--MASCARAS -->
