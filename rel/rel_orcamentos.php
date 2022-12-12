@@ -3,7 +3,7 @@
 $id_orcamento = $_GET['id_orcamento'];
 
 include('../conexao.php');
-$query = "select o.id_orcamento, o.data, o.tecnico ,o.cliente, cliente_representante_projeto, o.servico_oferecido, o.valor_total, o.status, c.nome as cli_nome, c.cpf_cnpj, c.endereco, c.email, c.telefone, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.id_orcamento = '$id_orcamento' "; 
+$query = "select o.id_orcamento, o.data, o.tecnico ,o.cliente, o.cliente_representante_projeto, o.sub_total, o.quantidade_aparelhos, o.servico_oferecido, o.tempo_garantia, o.descricao, o.valor_total, o.status, c.nome as cli_nome, c.cpf_cnpj, c.endereco, c.email, c.telefone, s.descricao as ser_descri from orcamento as o INNER JOIN clientes as c on (o.cliente = c.id) INNER JOIN servico_oferecido as s on (o.servico_oferecido = s.id_servico) where o.id_orcamento = '$id_orcamento' "; 
 
 $result = mysqli_query($conexao, $query);
 
@@ -11,6 +11,13 @@ $result = mysqli_query($conexao, $query);
  while($res_1 = mysqli_fetch_array($result)){
 
 $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
+$tecnico = $res_1['tecnico'];
+$cliente_representante_projeto = $res_1['cliente_representante_projeto'];
+$quantidade_aparelhos = $res_1['quantidade_aparelhos']; 
+$descricao = $res_1['descricao'];
+$tempo_garantia = $res_1['tempo_garantia'];
+$sub_total = $res_1['sub_total'];
+$valor_total = $res_1['valor_total'];
 
 
 
@@ -90,6 +97,8 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
 			<div class="row">
 				<div class="col-sm-8">	
 				  <big> Orçamento Nº <?php echo $id_orcamento ?>  </big>
+
+
 				</div>
 				<div class="col-sm-4">	
 				<big> Data: <?php echo $data2; ?> </big>
@@ -124,7 +133,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
 				 <p style="font-size:12px">  CPF: <?php echo $res_1['cpf_cnpj']; ?> </p>
 				</div>
 				<div class="col-sm-3">	
-				 <p style="font-size:12px">  Cliente Responsável Pelo Projeto: <?php echo $res_1['o.cliente_representante_projeto']; ?> </p>
+				 <p style="font-size:12px">  Cliente Responsável Pelo Projeto: <?php echo $cliente_representante_projeto; ?> </p>
 				</div>
 				
 				
@@ -140,20 +149,20 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
 			</div>
 			<div class="row">
 				<div class="col-sm-3">	
-				 <p style="font-size:12px">  Quantidade de Aparelhos: <?php echo $res_1['o.quantidade_aparelhos']; ?> </p>
+				 <p style="font-size:12px">  Quantidade de Aparelhos: <?php echo $quantidade_aparelhos; ?> </p>
 				</div>
 				<div class="col-sm-3">	
 				 <p style="font-size:12px">  Serviço Requerido: <?php echo $res_1['ser_descri']; ?> </p>
 				</div>
 				<div class="col-sm-3">	
-				<p style="font-size:12px">  Descrição: <?php echo $res_1['descricao']; ?> </p>
+				<p style="font-size:12px">  Descrição: <?php echo $descricao; ?> </p>
 				</div>
 				
 			</div>
 
 			<div class="row">
 				<div class="col-sm-12">	
-				 <p style="font-size:12px">  Tempo de Garantia: <?php echo $res_1['tempo_garantia']; ?> </p>
+				 <p style="font-size:12px">  Tempo de Garantia: <?php echo $tempo_garantia; ?> </p>
 				</div>
 				
 				
@@ -172,7 +181,7 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
 			</div>
 			<div class="row">
 				<div class="col-sm-12">	
-				 <p style="font-size:12px">  <?php echo $res_1['']; ?>  </p>
+				 <p style="font-size:12px">  <?php  ?>  </p>
 				</div>
 				
 				
@@ -189,8 +198,8 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
 				
 			</tr>
 			<tr>
-				<td> <?php echo $res_1['']; ?> </td>
-				<td> <?php echo $res_1['']; ?> </td>
+				<td> <?php ?> </td>
+				<td> <?php ?> </td>
 				<td> 1 </td>
 				
 			</tr>
@@ -207,8 +216,8 @@ $data2 = implode('/', array_reverse(explode('-', $res_1['data'])));
 				 
 				</div>
 				<div class="col-sm-4 areaTotais">	
-				 <p class="pgto" style="font-size:14px">  <b>Total de Materiais: </b> R$ <?php echo $res_1['']; ?> </p>
-				 <p class="pgto" style="font-size:14px">  <b>Total Mão de Obra: </b> R$ <?php echo $res_1['sub_total']; ?> </p>
+				 <p class="pgto" style="font-size:14px">  <b>Total de Materiais: </b> R$ <?php ?> </p>
+				 <p class="pgto" style="font-size:14px">  <b>Total Mão de Obra: </b> R$ <?php echo $sub_total; ?> </p>
 				
 				</div>
 				

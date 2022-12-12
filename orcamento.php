@@ -442,26 +442,7 @@ if(@$_GET['func'] == 'edita'){
                 <input type="text" class="form-control mr-2" name="tecnico" placeholder="tecnico" value="<?php echo $res_1['tecnico']; ?>" required>
               </div>
              
-              <div class="form-group">
-               <label for="fornecedor">Cliente</label>
-                
-                  <select class="form-control mr-2" id="category" name="cliente" value="<?php echo $res_1['cliente']; ?> " required>
-                  <?php
-                  
-                  $query = "SELECT * FROM clientes ORDER BY nome asc";
-                  $result = mysqli_query($conexao, $query);
-
-                  if($result){
-                    while($res_2 = mysqli_fetch_array($result)){
-                      ?>                                             
-                 <option value="<?php echo $res_2['id']; ?>"><?php echo $res_2['nome']; ?></option> 
-                      <?php      
-                    }
-                    
-                   }
-                  ?>
-                  </select>
-              </div>
+        
               <div class="form-group">
                 <label for="quantidade">Cliente representante_projeto</label>
                 <input type="text" class="form-control mr-2" name="cliente_representante_projeto" value="<?php echo $res_1['cliente_representante_projeto']; ?>" placeholder="Cliente Repre Projeto" required>
