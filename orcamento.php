@@ -233,13 +233,16 @@ include('conexao.php');
                              
                            
                              <td>
-                             <a class="btn btn-info" href="rel/rel_orcamentos_class.php?id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-pencil-square-o"></i></a>
+                             <a class="btn btn-outline-info" href="rel/rel_orcamentos_class.php?id_orcamento=<?php echo $id_orcamento; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-newspaper" viewBox="0 0 16 16">
+                                <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z"/>
+                                <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z"/>
+                              </svg></a>
+                             <a class="btn btn-outline-success" href="orcamento.php?func=visualiza&id_orcamento=<?php echo $id_orcamento; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars-fill" viewBox="0 0 16 16">
+                              <path d="M4.5 1A1.5 1.5 0 0 0 3 2.5V3h4v-.5A1.5 1.5 0 0 0 5.5 1h-1zM7 4v1h2V4h4v.882a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V13H9v-1.5a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5V13H1V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V4h4zM1 14v.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V14H1zm8 0v.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5V14H9zm4-11H9v-.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5V3z"/>
+                              </svg></a>
+                              <a class="btn btn-outline-warning" href="orcamento.php?func=edita&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-pencil-square-o"></i></a>
 
-                             <a class="btn btn-outline-warning" href="orcamento.php?func=edita&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-pencil-square-o"></i></a>
-
-                             <a class="btn btn-outline-danger" href="orcamento.php?func=deleta&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
-                             
-                             <a class="btn btn-outline-sucess" href="orcamento.php?func=visualiza&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
+<a class="btn btn-outline-danger" href="orcamento.php?func=deleta&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
 
                              </td>
                             </tr>
@@ -397,10 +400,18 @@ if($result == ''){
 }else{
     echo "<script language='javascript'> window.alert('Salvo com Sucesso!'); </script>";
     echo "<script language='javascript'> window.location='orcamento.php'; </script>";
-}
-
-}
 ?>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+        <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+        <span class="alert-text"><strong>Info!</strong> This is a info alert—check it out!</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+</div>
+
+<?php 
+}
+}?>
 
 
 <!--EXCLUIR -->

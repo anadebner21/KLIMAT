@@ -80,9 +80,9 @@ $valor_total = $res_1['valor_total'];
 	
 		<div class="row">
 			<div class="col-sm-5">	
-			  <img src="../img/fluiserv.png" width="250px">
+			  <img src="../img/fluiserv.png">
 			</div>
-			<div class="col-sm-7">	
+			<div class="col-sm-6">	
 			 <h3 class="titulo"><b>FLUISERV - Climatização </b></h3>
 			 <h6 class="titulo">Avenida Belmiro Sebastião Marques Nº 4161, Conj. Residensial Moradias Porto Seguro - PGUÁ - PR - CEP 83215-747</h6>
 			</div>

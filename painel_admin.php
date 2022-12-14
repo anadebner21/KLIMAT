@@ -13,6 +13,11 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
 <html lang="pt-br">
 
 <head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/paper-dashboard.css">
+  <link rel="stylesheet" href="assets/demo/demo.css">
+  <link rel="shortcut icon" href="assets/img/favicon.png">
 <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="img/Klimat_Logo__1_-removebg-preview.png">
   <link rel="icon" type="image/png" href="img/Klimat_Logo__1_-removebg-preview.png">
@@ -43,6 +48,16 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
   <link href="assets/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="assets/demo/demo.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 
 <body style="background-color:	#3b3b3b;">
@@ -62,8 +77,8 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
            
            <ul class="navbar-nav">
-           <li class="nav-item btn-rotate dropdown">
-                <a class="nav-link dropdown-toggle" href="logout.php" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <li class="nav-item">
+                <a class="nav-link" href="logout.php" >
                 <?php echo $_SESSION['nome_usuario'];?>
                 <i class="nc-icon nc-circle-10"></i>
                 </a>
@@ -128,9 +143,9 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
               <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
-                  <div class="icon-big text-center icon-warning">
+                  <div class="icon-big text-center icon-warning" class="demo-icons">
                       
-                      <i class="nc-icon nc-badge"></i>
+                      <i class="nc-icon nc-book-bookmark"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
@@ -149,8 +164,8 @@ if($_SESSION['cargo_usuario'] != 'gestor'){
               <div class="card-body">
                 <div class="row">
                   <div class="col-5 col-md-4">
-                    <div class="icon-big text-center icon-warning">
-                      <i class="nc-icon nc-badge"></i>
+                    <div class="icon-big text-center icon-warning" class="demo-icons">
+                      <i class="nc-icon nc-settings-gear-65"></i>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
