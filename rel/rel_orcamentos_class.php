@@ -1,7 +1,5 @@
 <?php
-
 require_once '../dompdf/autoload.php';
-
 // referenciando o namespace do dompdf
 
 use Dompdf\Dompdf;
@@ -17,7 +15,6 @@ $dompdf = new Dompdf((array('enable_remote' => true)));
 
 
 //inserindo o HTML que queremos converter
-
 $dompdf->loadHtml(utf8_decode($html));
 
 // Definindo o papel e a orientação
@@ -27,10 +24,7 @@ $dompdf->setPaper('A4','portrait');
 // Renderizando o HTML como PDF
 
 $dompdf->render();
-
 // Enviando o PDF para o browser
-
 $dompdf->stream('relatorioOrcamento.pdf',
 array("Attachment" => false));
-
 ?>

@@ -242,7 +242,7 @@ include('conexao.php');
                               </svg></a>
                               <a class="btn btn-outline-warning" href="orcamento.php?func=edita&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-pencil-square-o"></i></a>
 
-<a class="btn btn-outline-danger" href="orcamento.php?func=deleta&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
+                              <a class="btn btn-outline-danger" href="orcamento.php?func=deleta&id_orcamento=<?php echo $id_orcamento; ?>"><i class="fa fa-minus-square"></i></a>
 
                              </td>
                             </tr>
@@ -401,13 +401,7 @@ if($result == ''){
     echo "<script language='javascript'> window.alert('Salvo com Sucesso!'); </script>";
     echo "<script language='javascript'> window.location='orcamento.php'; </script>";
 ?>
-<div class="alert alert-info alert-dismissible fade show" role="alert">
-        <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-        <span class="alert-text"><strong>Info!</strong> This is a info alert—check it out!</span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-</div>
+
 
 <?php 
 }
@@ -522,6 +516,25 @@ if(@$_GET['func'] == 'edita'){
               <div class="form-group">
                 <label class="text-dark" for="quantidade">Técnico</label>
                 <input type="text" class="form-control mr-2" name="tecnico" placeholder="tecnico" value="<?php echo $res_1['tecnico']; ?>" required>
+              </div>
+              <div class="form-group">
+               <label for="fornecedor">Cliente</label>
+                
+                  <select class="form-control mr-2" id="category" name="cliente" value="<?php echo $res_1['cliente']; ?> " required>
+                  <?php
+                  
+                  $query = "SELECT * FROM clientes ORDER BY nome asc";
+                  $result = mysqli_query($conexao, $query);
+                  if($result){
+                    while($res_2 = mysqli_fetch_array($result)){
+                      ?>                                             
+                 <option value="<?php echo $res_2['id']; ?>"><?php echo $res_2['nome']; ?></option> 
+                      <?php      
+                    }
+                    
+                   }
+                  ?>
+                  </select>
               </div>
              
         
