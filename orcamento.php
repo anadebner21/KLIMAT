@@ -517,26 +517,7 @@ if(@$_GET['func'] == 'edita'){
                 <label class="text-dark" for="quantidade">Técnico</label>
                 <input type="text" class="form-control mr-2" name="tecnico" placeholder="tecnico" value="<?php echo $res_1['tecnico']; ?>" required>
               </div>
-              <div class="form-group">
-               <label for="fornecedor">Cliente</label>
-                
-                  <select class="form-control mr-2" id="category" name="cliente" value="<?php echo $res_1['cliente']; ?> " required>
-                  <?php
-                  
-                  $query = "SELECT * FROM clientes ORDER BY nome asc";
-                  $result = mysqli_query($conexao, $query);
-                  if($result){
-                    while($res_2 = mysqli_fetch_array($result)){
-                      ?>                                             
-                 <option value="<?php echo $res_2['id']; ?>"><?php echo $res_2['nome']; ?></option> 
-                      <?php      
-                    }
-                    
-                   }
-                  ?>
-                  </select>
-              </div>
-             
+              
         
               <div class="form-group">
                 <label class="text-dark" for="quantidade">Cliente representante_projeto</label>
@@ -616,7 +597,6 @@ if(@$_GET['func'] == 'edita'){
 <?php
 if(isset($_POST['buttonEditar'])){
   $tecnico = $_POST['tecnico'];
-  $cliente = $_POST['cliente'];
   $cliente_representante_projeto = $_POST['cliente_representante_projeto'];
   $quantidade_aparelhos = $_POST['quantidade_aparelhos'];
   $servico_oferecido = $_POST['servico_oferecido'];
@@ -627,7 +607,7 @@ if(isset($_POST['buttonEditar'])){
 
 
 
-$query_editar = "UPDATE orcamento set tecnico = '$tecnico', cliente = '$cliente', cliente_representante_projeto = '$cliente_representante_projeto', quantidade_aparelhos= '$quantidade_aparelhos', servico_oferecido = '$servico_oferecido', descricao = '$descricao',tempo_garantia = '$tempo_garantia', sub_total = '$sub_total', valor_total = '$valor_total' where id_orcamento = '$id_orcamento' ";
+$query_editar = "UPDATE orcamento set tecnico = '$tecnico', cliente_representante_projeto = '$cliente_representante_projeto', quantidade_aparelhos= '$quantidade_aparelhos', servico_oferecido = '$servico_oferecido', descricao = '$descricao',tempo_garantia = '$tempo_garantia', sub_total = '$sub_total', valor_total = '$valor_total' where id_orcamento = '$id_orcamento' ";
 
 $result_editar = mysqli_query($conexao, $query_editar);
 
